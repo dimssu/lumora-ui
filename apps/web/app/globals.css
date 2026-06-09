@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import "@lumora/ui/styles.css";
+
+/* Generate utilities for classes used inside the workspace packages. */
+@source "../../../packages/ui/src";
+@source "../../../packages/icons/src";
+
+@theme inline {
+  --font-sans: var(--font-grotesk);
+  --font-display: var(--font-fraunces);
+}
+
+body {
+  font-family: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Premium pairing: display face for the big voices only. */
+h1,
+h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: var(--lm-accent-soft);
+}
+
+input[type="range"] {
+  accent-color: var(--lm-accent);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
