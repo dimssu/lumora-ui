@@ -1,0 +1,14 @@
+{
+  "name": "lumora",
+  "private": true,
+  "description": "Lumora UI — a premium, motion-first React component library. Interfaces that glow.",
+  "scripts": {
+    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter @lumora/web dev"
+  },
+  "packageManager": "pnpm@10.15.1",
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}

@@ -1,0 +1,84 @@
+/* ─────────────────────────────────────────────────────────────
+   Lumora UI — design tokens
+   Dark-first. Light theme via [data-theme="light"].
+   All components consume only these variables; never hex inline.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* surfaces */
+  --lm-bg: #09090b;
+  --lm-surface: #101014;
+  --lm-surface-2: #17171c;
+  --lm-overlay: rgba(9, 9, 11, 0.72);
+
+  /* strokes */
+  --lm-border: rgba(255, 255, 255, 0.08);
+  --lm-border-strong: rgba(255, 255, 255, 0.16);
+
+  /* type */
+  --lm-fg: #f3f1ec;
+  --lm-fg-muted: #8e8e96;
+  --lm-fg-faint: #5c5c64;
+
+  /* the lumen — Lumora's signature accent */
+  --lm-accent: #dcc28a;
+  --lm-accent-fg: #0b0a08;
+  --lm-accent-soft: rgba(220, 194, 138, 0.14);
+  --lm-glow: rgba(220, 194, 138, 0.35);
+
+  /* status */
+  --lm-positive: #7dd4a8;
+  --lm-negative: #e2756f;
+
+  /* radii — slightly squarer than typical, part of the brand */
+  --lm-radius-sm: 6px;
+  --lm-radius: 10px;
+  --lm-radius-lg: 16px;
+  --lm-radius-full: 999px;
+
+  /* elevation */
+  --lm-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --lm-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --lm-shadow-glow: 0 0 0 1px var(--lm-border-strong), 0 8px 40px var(--lm-glow);
+
+  /* motion (CSS-side; JS springs live in lib/motion.ts) */
+  --lm-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --lm-ease-emphasized: cubic-bezier(0.19, 1, 0.22, 1);
+  --lm-duration-fast: 180ms;
+  --lm-duration: 300ms;
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --lm-bg: #faf9f6;
+  --lm-surface: #ffffff;
+  --lm-surface-2: #f1efe9;
+  --lm-overlay: rgba(250, 249, 246, 0.78);
+
+  --lm-border: rgba(12, 12, 14, 0.1);
+  --lm-border-strong: rgba(12, 12, 14, 0.2);
+
+  --lm-fg: #16151a;
+  --lm-fg-muted: #6d6c74;
+  --lm-fg-faint: #a3a2aa;
+
+  --lm-accent: #a8842f;
+  --lm-accent-fg: #fffdf8;
+  --lm-accent-soft: rgba(168, 132, 47, 0.12);
+  --lm-glow: rgba(168, 132, 47, 0.25);
+
+  --lm-shadow-sm: 0 1px 2px rgba(20, 18, 10, 0.08);
+  --lm-shadow: 0 8px 30px rgba(20, 18, 10, 0.1);
+  --lm-shadow-glow: 0 0 0 1px var(--lm-border-strong), 0 8px 40px var(--lm-glow);
+
+  color-scheme: light;
+}
+
+/* Respect users who opt out of motion. Components also check this in JS. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --lm-duration-fast: 1ms;
+    --lm-duration: 1ms;
+  }
+}
