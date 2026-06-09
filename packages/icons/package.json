@@ -1,0 +1,26 @@
+{
+  "name": "@lumora/icons",
+  "version": "0.1.0",
+  "description": "Animated icons for Lumora UI. Every glyph is an interaction.",
+  "type": "module",
+  "sideEffects": false,
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./icons/*": "./src/icons/*.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "motion": "^12.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}
