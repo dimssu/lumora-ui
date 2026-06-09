@@ -1,0 +1,24 @@
+{
+  "name": "lumora",
+  "version": "0.1.0",
+  "description": "Installer CLI for Lumora UI — copies motion-first React components into your project as source.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "lumora": "./bin/lumora.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}
