@@ -39,6 +39,7 @@ const navLinks = [
   { label: "Components", href: "/components" },
   { label: "Icons", href: "/icons" },
   { label: "Docs", href: "/docs" },
+  { label: "Skill", href: "/skill" },
 ];
 
 const footerColumns: FooterColumn[] = [
@@ -48,6 +49,7 @@ const footerColumns: FooterColumn[] = [
       { label: "Components", href: "/components" },
       { label: "Icons", href: "/icons" },
       { label: "Documentation", href: "/docs" },
+      { label: "Agent skill", href: "/skill" },
     ],
   },
   {
@@ -118,6 +120,14 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         group: "Pages",
         keywords: ["install", "theming", "motion"],
         onSelect: () => router.push("/docs"),
+      },
+      {
+        id: "page-skill",
+        label: "Agent skill",
+        hint: "/skill",
+        group: "Pages",
+        keywords: ["skill", "agent", "ai", "download", "lumora-builder"],
+        onSelect: () => router.push("/skill"),
       },
     ];
 

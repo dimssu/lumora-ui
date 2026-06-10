@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { GalleryTile } from "../../components/gallery-tile";
+import {
+  GalleryExplorer,
+  type GalleryEntry,
+} from "../../components/gallery-explorer";
 import { metaFor } from "../../lib/content";
 import { addCommand, categoryLabel, componentItems } from "../../lib/registry";
 
@@ -18,6 +21,14 @@ const sectionCopy: Record<(typeof sections)[number], string> = {
 };
 
 export default function ComponentsPage() {
+  const entries: GalleryEntry[] = componentItems.map((item) => ({
+    slug: item.name,
+    title: metaFor(item.name).title,
+    description: item.description,
+    command: addCommand(item.name),
+    category: item.category as GalleryEntry["category"],
+  }));
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
       <header className="max-w-2xl">
@@ -31,40 +42,14 @@ export default function ComponentsPage() {
         </p>
       </header>
 
-      {sections.map((category) => {
-        const items = componentItems.filter(
-          (item) => item.category === category,
-        );
-        if (items.length === 0) return null;
-        return (
-          <section
-            key={category}
-            aria-labelledby={`section-${category}`}
-            className="mt-16"
-          >
-            <h2
-              id={`section-${category}`}
-              className="text-xl font-semibold text-[var(--lm-fg)]"
-            >
-              {categoryLabel(category)}
-            </h2>
-            <p className="mt-1.5 text-sm text-[var(--lm-fg-muted)]">
-              {sectionCopy[category]}
-            </p>
-            <div className="mt-7 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {items.map((item) => (
-                <GalleryTile
-                  key={item.name}
-                  slug={item.name}
-                  title={metaFor(item.name).title}
-                  description={item.description}
-                  command={addCommand(item.name)}
-                />
-              ))}
-            </div>
-          </section>
-        );
-      })}
+      <GalleryExplorer
+        entries={entries}
+        sections={sections.map((category) => ({
+          category,
+          label: categoryLabel(category),
+          copy: sectionCopy[category],
+        }))}
+      />
     </div>
   );
 }

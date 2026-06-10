@@ -75,7 +75,7 @@ const tiers: PricingTier[] = [
     monthly: 0,
     yearly: 0,
     features: [
-      "All 40 core components",
+      "All 60 core components",
       "60 animated icons",
       "Dark & light token sets",
       "Community support",
