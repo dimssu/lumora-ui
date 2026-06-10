@@ -42,6 +42,21 @@
       ]
     },
     {
+      "name": "alert",
+      "category": "component",
+      "path": "packages/ui/src/components/alert.tsx",
+      "description": "Tonal callout.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "class-variance-authority",
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "animated-tabs",
       "category": "component",
       "path": "packages/ui/src/components/animated-tabs.tsx",
@@ -141,6 +156,19 @@
       ]
     },
     {
+      "name": "border-beam",
+      "category": "component",
+      "path": "packages/ui/src/components/border-beam.tsx",
+      "description": "Wraps its child with a luminous beam endlessly traveling around the border: a rotating conic gradient (bright head, transparent tail) is masked down to the border ring via the padding-box/border-box mask composite trick, so only the ring ever lights up.",
+      "internalDeps": [
+        "lib/cn"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "breadcrumbs",
       "category": "component",
       "path": "packages/ui/src/components/breadcrumbs.tsx",
@@ -197,6 +225,34 @@
       ]
     },
     {
+      "name": "checkbox",
+      "category": "component",
+      "path": "packages/ui/src/components/checkbox.tsx",
+      "description": "Accessible checkbox: checking fills the box with the lumen, pops it with a tiny scale breath, and draws the check stroke in along its path; the `indeterminate` state shows a dash instead.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "cursor-trail",
+      "category": "component",
+      "path": "packages/ui/src/components/cursor-trail.tsx",
+      "description": "A container whose pointer movement leaves a trail of small image cards: every `threshold` px of travel a card pops in at the cursor with a spring and a slight deterministic rotation, then fades and shrinks away ~700ms later.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "dialog",
       "category": "component",
       "path": "packages/ui/src/components/dialog.tsx",
@@ -226,6 +282,49 @@
       ]
     },
     {
+      "name": "drawer",
+      "category": "component",
+      "path": "packages/ui/src/components/drawer.tsx",
+      "description": "Side panel: it glides in from its edge over a blurred overlay and can be dragged back out — release past 30% of its size (or with a flick) and it dismisses.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react",
+        "react-dom"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "category": "component",
+      "path": "packages/ui/src/components/dropdown-menu.tsx",
+      "description": "Anchored action menu: it drifts open with a slight scale while items cascade in at 12ms intervals, flipping above the trigger when the viewport runs out.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "elastic-stack",
+      "category": "component",
+      "path": "packages/ui/src/components/elastic-stack.tsx",
+      "description": "A fanned deck where only the top card is draggable: pull it sideways against elastic constraints — release beyond `threshold` and it flings off with your velocity, then glides back in at the rear while the rest shuffle one step forward; release short of it and it snaps home.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "file-dropzone",
       "category": "component",
       "path": "packages/ui/src/components/file-dropzone.tsx",
@@ -240,12 +339,67 @@
       ]
     },
     {
+      "name": "flip-text",
+      "category": "component",
+      "path": "packages/ui/src/components/flip-text.tsx",
+      "description": "Cycles words by flipping them around the X axis: the current word's characters tip away (rotateX → -90°) while the next word's tip in (90° → 0°) under shared perspective, each character 18ms behind the last, and the container's width glides between word widths.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "folder",
+      "category": "component",
+      "path": "packages/ui/src/components/folder.tsx",
+      "description": "An interactive folder drawn from CSS shapes: hovering tilts the front lid open on its bottom hinge while up to three items rise out of the slot with a stagger and a slight fan; clicking toggles it held open (button semantics with aria-expanded).",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "glitch-text",
+      "category": "component",
+      "path": "packages/ui/src/components/glitch-text.tsx",
+      "description": "Text that rests perfectly clean, then glitches for ~350ms when hovered (or on a loop): two aria-hidden copies tinted lumen and dusk flicker in with small horizontal offsets and sliced clip-paths, then everything settles.",
+      "internalDeps": [
+        "lib/cn"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "gradient-text",
       "category": "component",
       "path": "packages/ui/src/components/gradient-text.tsx",
       "description": "Inline text painted by a slow lumen gradient that sweeps left to right on a seamless loop — accent into foreground and back.",
       "internalDeps": [
         "lib/cn"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "hover-link",
+      "category": "component",
+      "path": "packages/ui/src/components/hover-link.tsx",
+      "description": "An anchor with an animated lumen underline.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
       ],
       "npmDeps": [
         "motion",
@@ -308,6 +462,20 @@
       ]
     },
     {
+      "name": "morph-text",
+      "category": "component",
+      "path": "packages/ui/src/components/morph-text.tsx",
+      "description": "Cycles words by dissolving: the outgoing word blurs and fades while the incoming one sharpens out of the same blur with a subtle tracking widen, the two overlapping for ~40% of the transition.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "number-ticker",
       "category": "component",
       "path": "packages/ui/src/components/number-ticker.tsx",
@@ -326,6 +494,20 @@
       "category": "component",
       "path": "packages/ui/src/components/otp-input.tsx",
       "description": "One-time-code entry: one cell per digit, each popping on a snappy spring as it fills while the accent ring tracks the active cell.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "pagination",
+      "category": "component",
+      "path": "packages/ui/src/components/pagination.tsx",
+      "description": "Page switcher: the active pill glides between numbers as a shared element on `springs.snap`, and the prev/next arrows nudge outward on hover.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -364,10 +546,38 @@
       ]
     },
     {
+      "name": "radio-group",
+      "category": "component",
+      "path": "packages/ui/src/components/radio-group.tsx",
+      "description": "Radio group: selecting an item pops the inner dot in on a snappy spring while a soft lumen ring expands outward once and fades.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "rating",
       "category": "component",
       "path": "packages/ui/src/components/rating.tsx",
       "description": "Star rating with slider semantics: hovering previews the fill sweeping up to the pointer with a tiny per-star stagger, clicking commits with a pop on the chosen star, and arrow keys adjust the value in steps (halves with `allowHalf`).",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "reveal-list",
+      "category": "component",
+      "path": "packages/ui/src/components/reveal-list.tsx",
+      "description": "Editorial list of large rows: hovering a row summons a floating preview image that trails the cursor on a lagging spring and crossfades as you move between rows, while the other rows dim back.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -420,6 +630,18 @@
       ]
     },
     {
+      "name": "separator",
+      "category": "component",
+      "path": "packages/ui/src/components/separator.tsx",
+      "description": "A quiet rule that fades to transparent at both ends, so it never cuts a hard edge into the layout.",
+      "internalDeps": [
+        "lib/cn"
+      ],
+      "npmDeps": [
+        "react"
+      ]
+    },
+    {
       "name": "skeleton",
       "category": "component",
       "path": "packages/ui/src/components/skeleton.tsx",
@@ -437,6 +659,20 @@
       "category": "component",
       "path": "packages/ui/src/components/slider.tsx",
       "description": "Range slider: the accent-filled track follows a thumb that swells on a snappy spring while dragged, with an optional value bubble floating above it.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "spinner",
+      "category": "component",
+      "path": "packages/ui/src/components/spinner.tsx",
+      "description": "The brand loader.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -503,12 +739,40 @@
       ]
     },
     {
+      "name": "table",
+      "category": "component",
+      "path": "packages/ui/src/components/table.tsx",
+      "description": "Quiet data table: hairline borders, a surface-toned header, and rows that brighten gently under the pointer.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "text-reveal",
       "category": "component",
       "path": "packages/ui/src/components/text-reveal.tsx",
       "description": "Scroll-linked paragraph reveal: as the text crosses a band of the viewport, each word brightens from faint to full foreground and sheds a slight blur, so the sentence appears to come into focus as you read.",
       "internalDeps": [
         "lib/cn"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "textarea",
+      "category": "component",
+      "path": "packages/ui/src/components/textarea.tsx",
+      "description": "Floating-label textarea: the label rests where a placeholder would, then rises and shrinks once the field is focused or filled while a 1px accent underline draws in from the left.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
       ],
       "npmDeps": [
         "motion",
@@ -556,6 +820,20 @@
         "motion",
         "react",
         "react-dom"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "category": "component",
+      "path": "packages/ui/src/components/toggle-group.tsx",
+      "description": "Pressed-button group: in single mode a raised backplate glides between pressed items as a shared element on `springs.snap`; in multiple mode each item simply latches.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
       ]
     },
     {
