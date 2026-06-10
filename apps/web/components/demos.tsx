@@ -6,9 +6,22 @@ import {
   AccordionItem,
   AnimatedTabs,
   AnimatedTooltip,
+  AnnouncementBar,
   AuroraBackground,
+  AuthForm,
+  Avatar,
+  AvatarGroup,
+  Badge,
   BeamGrid,
+  Breadcrumbs,
   Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Carousel,
+  Changelog,
   ChatWidget,
   CommandMenu,
   CtaBanner,
@@ -17,25 +30,45 @@ import {
   DockItem,
   Faq,
   FeatureBento,
+  FileDropzone,
   Footer,
   GradientText,
   Hero,
   Input,
+  Kbd,
+  LogoStrip,
   MagneticZone,
   Marquee,
   Navbar,
   NumberTicker,
+  OtpInput,
+  Popover,
   Pricing,
+  Progress,
+  Rating,
   ScrollProgress,
+  SegmentedControl,
+  Select,
   SelectionToolbar,
+  Sidebar,
+  Skeleton,
+  Slider,
   Spotlight,
   SpotlightCard,
+  StatsBand,
+  Stepper,
   Switch,
+  TeamGrid,
   Testimonials,
   TextReveal,
   TiltCard,
+  Timeline,
+  Toaster,
+  Tooltip,
+  Topbar,
   Typewriter,
   cn,
+  toast,
   type CommandMenuItem,
 } from "@lumora/ui";
 import {
@@ -261,6 +294,165 @@ function DockDemo() {
   );
 }
 
+function ToastDemo() {
+  return (
+    <>
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            toast({
+              title: "Draft saved",
+              description: "Synced to your workspace just now.",
+            })
+          }
+        >
+          Default
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => toast({ title: "Deploy complete", variant: "positive" })}
+        >
+          Positive
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            toast({
+              title: "Connection lost",
+              variant: "negative",
+              action: { label: "Retry", onClick: () => {} },
+            })
+          }
+        >
+          Negative
+        </Button>
+      </div>
+      {/* Toaster portals to document.body, so toasts stack at the
+          viewport's bottom-right corner rather than inside this tile. */}
+      <Toaster />
+    </>
+  );
+}
+
+function SliderDemo() {
+  const [glow, setGlow] = React.useState(40);
+  return (
+    <div className="w-full max-w-xs">
+      <Slider
+        value={glow}
+        onValueChange={setGlow}
+        bubble
+        formatValue={(v) => `${v}%`}
+        aria-label="Glow intensity"
+      />
+      <p className="mt-4 text-xs text-[var(--lm-fg-faint)]">
+        Glow intensity — {glow}%. Drag and the bubble rides the thumb.
+      </p>
+    </div>
+  );
+}
+
+function ProgressDemo() {
+  const [value, setValue] = React.useState(62);
+  return (
+    <div className="flex w-full max-w-xs flex-col gap-5">
+      <Progress value={value} gradient aria-label="Render progress" />
+      <Progress indeterminate aria-label="Indexing" />
+      <Button
+        variant="outline"
+        size="sm"
+        className="self-center"
+        onClick={() => setValue(Math.floor(Math.random() * 91) + 5)}
+      >
+        New value
+      </Button>
+    </div>
+  );
+}
+
+function OtpDemo() {
+  const [done, setDone] = React.useState(false);
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <OtpInput
+        length={4}
+        onComplete={() => setDone(true)}
+        onChange={(code) => {
+          if (code.length < 4) setDone(false);
+        }}
+      />
+      <p aria-live="polite" className="min-h-4 text-xs text-[var(--lm-fg-faint)]">
+        {done ? "Code accepted — welcome back." : "Type or paste any 4 digits."}
+      </p>
+    </div>
+  );
+}
+
+function RatingDemo() {
+  const [stars, setStars] = React.useState(3.5);
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <Rating value={stars} onValueChange={setStars} allowHalf label="Rate the glow" />
+      <p className="text-xs text-[var(--lm-fg-faint)]">
+        {stars} of 5 — hover sweeps, halves count.
+      </p>
+    </div>
+  );
+}
+
+function StepperDemo() {
+  const [step, setStep] = React.useState(1);
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-6">
+      <Stepper
+        steps={[{ label: "Account" }, { label: "Workspace" }, { label: "Invite" }]}
+        activeStep={step}
+        onStepClick={setStep}
+      />
+      <div className="flex justify-center gap-2">
+        <Button
+          variant="ghost"
+          size="sm"
+          disabled={step === 0}
+          onClick={() => setStep(step - 1)}
+        >
+          Back
+        </Button>
+        <Button
+          variant="accent"
+          size="sm"
+          disabled={step === 3}
+          onClick={() => setStep(step + 1)}
+        >
+          {step >= 2 ? "Finish" : "Next"}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function AnnouncementDemo() {
+  const [run, setRun] = React.useState(0);
+  return (
+    <div className="flex w-full flex-col items-center gap-3">
+      <AnnouncementBar
+        key={run}
+        tone="accent"
+        link={{ label: "See what changed", href: "#" }}
+      >
+        Lumora phase two — 20 new components
+      </AnnouncementBar>
+      <Button variant="ghost" size="sm" onClick={() => setRun((n) => n + 1)}>
+        Replay the slide-in
+      </Button>
+    </div>
+  );
+}
+
 /* ── shared demo content ─────────────────────────────────────── */
 
 const tooltipPeople = [
@@ -271,6 +463,12 @@ const tooltipPeople = [
 ];
 
 const marqueeWords = ["Snap", "Drift", "Glide", "Lumen", "Quiet", "Glow"];
+
+const carouselSlides = [
+  { title: "Snap", copy: "Fast settle, no wobble." },
+  { title: "Drift", copy: "One gentle breath." },
+  { title: "Glide", copy: "Long, weighty, deliberate." },
+];
 
 function MarqueeDemo() {
   return (
@@ -362,6 +560,7 @@ const demos: Record<string, DemoEntry> = {
       </div>
     ),
   },
+  announcement: { preview: <AnnouncementDemo /> },
   "aurora-background": {
     preview: (
       <AuroraBackground className="flex h-full min-h-44 w-full items-center justify-center rounded-[var(--lm-radius)]">
@@ -381,6 +580,39 @@ const demos: Record<string, DemoEntry> = {
           </p>
         </div>
       </AuroraBackground>
+    ),
+  },
+  avatar: {
+    preview: (
+      <div className="flex flex-col items-center gap-5">
+        <div className="flex items-center gap-4">
+          <Avatar name="Mara Voss" size="lg" status="positive" />
+          <Avatar name="Theo Lindqvist" size="lg" shape="square" />
+          <Avatar name="Priya Raman" size="lg" status="away" />
+        </div>
+        <AvatarGroup max={3}>
+          <Avatar name="Mara Voss" />
+          <Avatar name="Theo Lindqvist" />
+          <Avatar name="Priya Raman" />
+          <Avatar name="Aiko Tanabe" />
+          <Avatar name="Jonas Eriksen" />
+        </AvatarGroup>
+      </div>
+    ),
+  },
+  badge: {
+    preview: (
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <Badge>Draft</Badge>
+        <Badge variant="accent">Beta</Badge>
+        <Badge variant="positive" pulse>
+          Live
+        </Badge>
+        <Badge variant="negative" dot>
+          Degraded
+        </Badge>
+        <Badge variant="outline">v2.4.0</Badge>
+      </div>
     ),
   },
   "beam-grid": {
@@ -406,6 +638,19 @@ const demos: Record<string, DemoEntry> = {
       </BeamGrid>
     ),
   },
+  breadcrumbs: {
+    preview: (
+      <Breadcrumbs
+        items={[
+          { label: "Ondine", href: "#" },
+          { label: "Workspaces", href: "#" },
+          { label: "Night shift", href: "#" },
+          { label: "Lighting", href: "#" },
+          { label: "Lumen curve" },
+        ]}
+      />
+    ),
+  },
   button: {
     preview: (
       <div className="flex flex-wrap items-center justify-center gap-3">
@@ -418,8 +663,57 @@ const demos: Record<string, DemoEntry> = {
       </div>
     ),
   },
+  card: {
+    preview: (
+      <Card variant="lift" className="w-full max-w-xs">
+        <CardHeader>
+          <CardTitle>Night shift</CardTitle>
+          <Badge variant="accent" size="sm">
+            New
+          </Badge>
+        </CardHeader>
+        <CardBody>
+          Hover the card — the lift variant raises it 2px on a deeper shadow.
+        </CardBody>
+        <CardFooter>
+          <Button variant="ghost" size="sm">
+            Dismiss
+          </Button>
+          <Button variant="accent" size="sm">
+            Enable
+          </Button>
+        </CardFooter>
+      </Card>
+    ),
+  },
+  carousel: {
+    preview: (
+      <Carousel className="w-full max-w-xs" aria-label="The three springs">
+        {carouselSlides.map((slide) => (
+          <div
+            key={slide.title}
+            className="flex h-28 flex-col items-center justify-center rounded-[var(--lm-radius)] border border-[var(--lm-border)] bg-[var(--lm-surface)] p-4"
+          >
+            <p className="text-base font-semibold text-[var(--lm-fg)]">
+              {slide.title}
+            </p>
+            <p className="mt-1 text-xs text-[var(--lm-fg-muted)]">{slide.copy}</p>
+          </div>
+        ))}
+      </Carousel>
+    ),
+  },
   dialog: { preview: <DialogDemo /> },
   dock: { preview: <DockDemo /> },
+  "file-dropzone": {
+    preview: (
+      <FileDropzone
+        multiple
+        className="w-full max-w-xs"
+        label="Drop files here, or click to browse"
+      />
+    ),
+  },
   "gradient-text": {
     preview: (
       <p className="text-2xl font-semibold">
@@ -431,6 +725,20 @@ const demos: Record<string, DemoEntry> = {
     preview: (
       <div className="w-full max-w-xs">
         <Input label="Work email" type="email" autoComplete="email" />
+      </div>
+    ),
+  },
+  kbd: {
+    preview: (
+      <div className="flex flex-col items-center gap-3">
+        <div className="flex items-center gap-2">
+          <Kbd combo="mod+k" listen />
+          <Kbd combo="shift+enter" listen />
+          <Kbd>?</Kbd>
+        </div>
+        <p className="text-xs text-[var(--lm-fg-faint)]">
+          Press the real combo — the cap sinks with it.
+        </p>
       </div>
     ),
   },
@@ -460,7 +768,56 @@ const demos: Record<string, DemoEntry> = {
       </div>
     ),
   },
+  "otp-input": { preview: <OtpDemo /> },
+  popover: {
+    preview: (
+      <Popover trigger="Share project">
+        <p className="text-sm font-medium text-[var(--lm-fg)]">Invite by link</p>
+        <p className="mt-1 text-xs leading-relaxed text-[var(--lm-fg-muted)]">
+          Anyone with the link can view. The panel breathes out of its anchor
+          side and flips when space runs short.
+        </p>
+      </Popover>
+    ),
+  },
+  progress: { preview: <ProgressDemo /> },
+  rating: { preview: <RatingDemo /> },
   "scroll-progress": { preview: <ScrollProgressDemo /> },
+  "segmented-control": {
+    preview: (
+      <SegmentedControl
+        defaultValue="board"
+        items={[
+          { value: "list", label: "List" },
+          { value: "board", label: "Board" },
+          { value: "timeline", label: "Timeline" },
+        ]}
+      />
+    ),
+  },
+  select: {
+    preview: (
+      <div className="w-full max-w-[220px]">
+        <Select
+          placeholder="Pick a spring"
+          options={[
+            { value: "snap", label: "Snap — fast settle" },
+            { value: "drift", label: "Drift — one breath" },
+            { value: "glide", label: "Glide — long and weighty" },
+          ]}
+        />
+      </div>
+    ),
+  },
+  skeleton: {
+    preview: (
+      <div className="flex w-full max-w-xs items-start gap-4">
+        <Skeleton className="h-10 w-10 shrink-0 rounded-[var(--lm-radius-full)]" />
+        <Skeleton lines={3} />
+      </div>
+    ),
+  },
+  slider: { preview: <SliderDemo /> },
   spotlight: {
     preview: (
       <Spotlight
@@ -486,6 +843,7 @@ const demos: Record<string, DemoEntry> = {
       </SpotlightCard>
     ),
   },
+  stepper: { preview: <StepperDemo /> },
   switch: { preview: <SwitchDemo /> },
   "text-reveal": {
     preview: (
@@ -508,6 +866,38 @@ const demos: Record<string, DemoEntry> = {
           The card tilts toward your cursor in 3D and drifts flat on leave.
         </p>
       </TiltCard>
+    ),
+  },
+  timeline: {
+    preview: (
+      <Timeline
+        className="w-full max-w-xs"
+        items={[
+          {
+            title: "Beam shipped",
+            time: "Just now",
+            body: "v2.4 rolls out to every workspace.",
+          },
+          {
+            title: "Dock magnified",
+            time: "2d ago",
+            body: "Cursor-distance scaling lands.",
+          },
+          {
+            title: "First lumen",
+            time: "May 2026",
+            body: "The accent finds its glow.",
+          },
+        ]}
+      />
+    ),
+  },
+  toast: { preview: <ToastDemo /> },
+  tooltip: {
+    preview: (
+      <Tooltip content="Drifts in after 300ms, leaning toward its anchor.">
+        <Button variant="outline">Hover me</Button>
+      </Tooltip>
     ),
   },
   typewriter: {
@@ -612,6 +1002,87 @@ const demos: Record<string, DemoEntry> = {
       </BlockPreview>
     ),
     full: <Footer />,
+  },
+  sidebar: {
+    preview: (
+      <BlockPreview scale={0.45}>
+        <div className="h-[560px]">
+          <Sidebar className="min-h-0" />
+        </div>
+      </BlockPreview>
+    ),
+    full: (
+      <div className="w-full overflow-hidden rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)]">
+        <div className="flex h-[480px] bg-[var(--lm-bg)]">
+          <Sidebar className="min-h-0" />
+          <p className="flex-1 px-6 py-8 text-sm text-[var(--lm-fg-faint)]">
+            Click items to move the active pill, then press the chevron at the
+            bottom — the rail narrows to icons and labels fade out, with
+            tooltips taking over.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  topbar: {
+    preview: (
+      <BlockPreview scale={0.55}>
+        <div className="h-44">
+          <Topbar />
+        </div>
+      </BlockPreview>
+    ),
+    full: (
+      <div className="w-full overflow-hidden rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)]">
+        <div className="h-64 bg-[var(--lm-bg)]">
+          <Topbar />
+          <p className="px-6 py-8 text-sm text-[var(--lm-fg-faint)]">
+            Open the avatar menu — entries cascade in and arrow keys walk them.
+            Wire onSearchClick to your command palette.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  "auth-form": {
+    preview: (
+      <BlockPreview scale={0.35}>
+        <AuthForm />
+      </BlockPreview>
+    ),
+    full: <AuthForm />,
+  },
+  stats: {
+    preview: (
+      <BlockPreview scale={0.35}>
+        <StatsBand />
+      </BlockPreview>
+    ),
+    full: <StatsBand />,
+  },
+  team: {
+    preview: (
+      <BlockPreview scale={0.3}>
+        <TeamGrid />
+      </BlockPreview>
+    ),
+    full: <TeamGrid />,
+  },
+  changelog: {
+    preview: (
+      <BlockPreview scale={0.3}>
+        <Changelog />
+      </BlockPreview>
+    ),
+    full: <Changelog />,
+  },
+  "logo-strip": {
+    preview: (
+      <BlockPreview scale={0.45}>
+        <LogoStrip />
+      </BlockPreview>
+    ),
+    full: <LogoStrip />,
   },
 
   /* ai */

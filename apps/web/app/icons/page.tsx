@@ -5,7 +5,7 @@ import { iconItems } from "../../lib/registry";
 export const metadata: Metadata = {
   title: "Icons",
   description:
-    "24 animated icons on the 24px grid. Hover to play, click to copy the install command.",
+    "60 animated icons on the 24px grid. Hover to play, click to copy the install command.",
 };
 
 export default function IconsPage() {

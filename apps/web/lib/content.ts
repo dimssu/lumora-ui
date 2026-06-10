@@ -27,11 +27,29 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "items is an array of { id, name, hint?, src? } — omit src to fall back to initials. avatarSize sets the avatar diameter in px (default 44). The tooltip leans with your cursor over each avatar.",
   },
+  announcement: {
+    title: "Announcement Bar",
+    exports: "AnnouncementBar",
+    propsNote:
+      'Give it an id and dismissal sticks across visits via localStorage. tone: "neutral" | "accent"; link adds a trailing link whose arrow nudges forward on hover; dismissible (default true) shows the close button and onDismiss fires after it collapses.',
+  },
   "aurora-background": {
     title: "Aurora Background",
     exports: "AuroraBackground",
     propsNote:
       "A section wrapper: pass your content as children. animated (default true) drives the slow blob drift and is forced off under reduced motion.",
+  },
+  avatar: {
+    title: "Avatar",
+    exports: "Avatar, AvatarGroup",
+    propsNote:
+      "name is required and drives the initials fallback, which crossfades in if src errors. size: xs–xl; shape: circle | square; status adds a positive/negative/away dot. AvatarGroup overlaps its children and collapses overflow past max into a +N chip.",
+  },
+  badge: {
+    title: "Badge",
+    exports: "Badge",
+    propsNote:
+      "variant: neutral | accent | positive | negative | outline; size: sm | md. dot leads with a status dot in the variant's tone, and pulse loops a soft expanding ring around it (implying dot). The ring holds still under reduced motion.",
   },
   "beam-grid": {
     title: "Beam Grid",
@@ -39,11 +57,29 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "density sets the grid cell size in px (default 56); beamCount controls how many lumen beams travel the lines (default 3). Beams disappear under reduced motion, leaving the quiet grid.",
   },
+  breadcrumbs: {
+    title: "Breadcrumbs",
+    exports: "Breadcrumbs",
+    propsNote:
+      "items take { label, href? } — the last renders as the current page. maxVisible (default 4) collapses the middle into an ellipsis you can expand; separator swaps the glyph. Hovering a link slides a lumen underline in from the left.",
+  },
   button: {
     title: "Button",
     exports: "Button",
     propsNote:
       'variant: solid | accent | outline | ghost | glow; size: sm | md | lg | icon. shimmer sweeps a soft light across on a slow loop. Presses sink physically on the snap spring.',
+  },
+  card: {
+    title: "Card",
+    exports: "Card, CardHeader, CardTitle, CardBody, CardFooter",
+    propsNote:
+      "variant: quiet | lift | glow — quiet sits flat, lift raises 2px with a deeper shadow on hover, glow carries the lumen. padding: none | sm | md | lg (default md). Compose with the header, title, body and footer subcomponents.",
+  },
+  carousel: {
+    title: "Carousel",
+    exports: "Carousel",
+    propsNote:
+      "Each child is a slide. itemsPerView shows several at once — fractions peek the next edge — and gap spaces them in px. Drag to flick with elastic edges, or steer with the arrows, dots and keyboard; showArrows/showDots hide the chrome.",
   },
   dialog: {
     title: "Dialog",
@@ -57,6 +93,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "magnification sets the peak scale under the cursor (default 1.7). Each DockItem needs a label (its tooltip) and an optional size in px; items magnify with cursor proximity and hold still under reduced motion.",
   },
+  "file-dropzone": {
+    title: "File Dropzone",
+    exports: "FileDropzone",
+    propsNote:
+      'onFiles receives the full accepted list whenever it changes; accept and multiple mirror the native input, and label swaps the prompt. Accepted files stack below in an animated list — removing one collapses its row. Click or press Enter to open the picker.',
+  },
   "gradient-text": {
     title: "Gradient Text",
     exports: "GradientText",
@@ -68,6 +110,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     exports: "Input",
     propsNote:
       "label is required and floats from the placeholder position on focus or value. error renders a validation message in the negative tone and wires aria-describedby. All native input props pass through.",
+  },
+  kbd: {
+    title: "Kbd",
+    exports: "Kbd",
+    propsNote:
+      'combo like "mod+k" renders platform glyphs — ⌘ on Mac, Ctrl elsewhere — and plain children work too. With listen, the cap physically presses down whenever the real combo is struck.',
   },
   "magnetic-button": {
     title: "Magnetic Zone",
@@ -87,11 +135,59 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "value is the number to land on; from, decimals, prefix and suffix shape the count. Ticks up on a spring once scrolled into view; shows the final value immediately under reduced motion.",
   },
+  "otp-input": {
+    title: "OTP Input",
+    exports: "OtpInput",
+    propsNote:
+      "length sets the digit count (default 6). onChange fires per keystroke and onComplete once every cell is filled; pasting a full code distributes it across the cells. label names the group for assistive tech.",
+  },
+  popover: {
+    title: "Popover",
+    exports: "Popover",
+    propsNote:
+      'trigger fills the built-in button and children fill the panel. side picks the preferred edge (default "bottom") and flips when the viewport is tight. Works controlled via open/onOpenChange or uncontrolled via defaultOpen; Escape, outside clicks and focus-out dismiss it.',
+  },
+  progress: {
+    title: "Progress",
+    exports: "Progress",
+    propsNote:
+      "value is completion from 0–100; the fill glides to each new value on the glide spring. indeterminate sends a lumen segment traveling the track instead, and gradient blends the fill from the lumen into the dusk accent.",
+  },
+  rating: {
+    title: "Rating",
+    exports: "Rating",
+    propsNote:
+      "count sets the stars (default 5); works controlled via value/onValueChange or uncontrolled via defaultValue. allowHalf enables half-star steps, readOnly locks it to display, and arrow keys adjust the value from the keyboard.",
+  },
   "scroll-progress": {
     title: "Scroll Progress",
     exports: "ScrollProgress",
     propsNote:
       'position: "top" | "bottom" picks the viewport edge. The 2px fill is smoothed by the glide spring; with reduced motion it tracks scroll directly. This very page mounts one — watch the top edge as you scroll.',
+  },
+  "segmented-control": {
+    title: "Segmented Control",
+    exports: "SegmentedControl",
+    propsNote:
+      'items take { value, label, disabled? }; the raised pill glides between segments as a shared element on the snap spring. Controlled via value/onValueChange or uncontrolled via defaultValue; size: "sm" | "md".',
+  },
+  select: {
+    title: "Select",
+    exports: "Select",
+    propsNote:
+      "options take { value, label, textValue?, disabled? }; works controlled via value/onValueChange or uncontrolled via defaultValue, with placeholder on the empty trigger. Arrow keys, Home/End, typeahead and Enter drive it entirely from the keyboard.",
+  },
+  skeleton: {
+    title: "Skeleton",
+    exports: "Skeleton",
+    propsNote:
+      "Size the single block with className, or pass lines for a paragraph of staggered-width rows. Purely decorative — hidden from assistive tech, and a static block under reduced motion.",
+  },
+  slider: {
+    title: "Slider",
+    exports: "Slider",
+    propsNote:
+      "Controlled (value + onValueChange) or uncontrolled (defaultValue); min, max and step bound the range. bubble floats the value above the thumb while it is dragged or focused, and formatValue shapes its text.",
   },
   spotlight: {
     title: "Spotlight",
@@ -104,6 +200,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     exports: "SpotlightCard",
     propsNote:
       "radius sets the glow radius in px (default 260). The card supplies surface, border and overflow handling — just pass children. Every tile in this gallery is one.",
+  },
+  stepper: {
+    title: "Stepper",
+    exports: "Stepper",
+    propsNote:
+      'steps take { label, description? }; activeStep is the zero-based step in progress. Connectors fill with the lumen as steps complete and numbers crossfade into a drawn-in check. onStepClick makes steps clickable; orientation: "horizontal" | "vertical".',
   },
   switch: {
     title: "Switch",
@@ -123,11 +225,41 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "maxTilt caps the tilt in degrees at the edges (default 10); glare adds a soft lumen glare that tracks the pointer. preserve-3d is set, so children can pop with their own translateZ.",
   },
+  timeline: {
+    title: "Timeline",
+    exports: "Timeline",
+    propsNote:
+      "items take { title, time?, body?, icon? }. The spine draws itself downward the first time the list scrolls into view, while each node pops and its content drifts in.",
+  },
+  toast: {
+    title: "Toast",
+    exports: "toast, Toaster",
+    propsNote:
+      "Mount Toaster once near the app root — it portals to document.body and stacks toasts bottom-right. Call toast({ title, description?, variant?, action?, duration? }) from anywhere; it returns an id for toast.dismiss(id). Hovering a toast pauses its auto-dismiss timer.",
+  },
+  tooltip: {
+    title: "Tooltip",
+    exports: "Tooltip",
+    propsNote:
+      'Wrap a single element; content fills the bubble. side picks the preferred edge (default "top") and flips automatically when the viewport is tight; delay is the hover wait in ms (default 300).',
+  },
   typewriter: {
     title: "Typewriter",
     exports: "Typewriter",
     propsNote:
       "words cycles through your strings; typeSpeed/deleteSpeed are ms per character; holdMs pauses on a completed word; loop starts over after the last. Reduced motion shows the first word statically.",
+  },
+  "auth-form": {
+    title: "Auth Form",
+    exports: "AuthForm",
+    propsNote:
+      "Switches between sign-in and sign-up via the footer toggle — controlled with mode/onModeChange or uncontrolled via defaultMode. onSubmit receives { email, password } plus the mode; ssoProviders and onSsoSelect fill the divider row; error renders above the submit button.",
+  },
+  changelog: {
+    title: "Changelog",
+    exports: "Changelog",
+    propsNote:
+      'releases carry version, date, title, items and optional tags toned "new" (lumen), "improved" (dusk) or "fixed" (positive), listed newest first along the hairline spine. heading and subheading top the section.',
   },
   cta: {
     title: "CTA Banner",
@@ -159,6 +291,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "headline staggers word by word out of a blur; eyebrow, subcopy, primaryCta/secondaryCta ({ label, onClick }) and avatars shape the rest. Pass avatars={[]} to hide the trust row, and media for a panel that drifts up beneath the copy.",
   },
+  "logo-strip": {
+    title: "Logo Strip",
+    exports: "LogoStrip",
+    propsNote:
+      "logos are fictional text wordmarks ({ name, className? }) styled per brand; label sets the muted line above. marquee (default true) scrolls them at speed px per second with soft edge fades — false renders a static grid instead.",
+  },
   navbar: {
     title: "Navbar",
     exports: "Navbar",
@@ -171,11 +309,35 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "tiers carry name, description, monthly/yearly prices, features and ctaLabel; mark one highlighted for the lumen glow. defaultPeriod picks the billing toggle's start; onTierSelect receives the tier and period.",
   },
+  sidebar: {
+    title: "Sidebar",
+    exports: "Sidebar",
+    propsNote:
+      "sections group items ({ id, label, icon, href? or onClick?, badge? }); works controlled via activeId/collapsed or uncontrolled with the demo defaults. The bottom toggle collapses the rail to icons with tooltips; onItemSelect receives the pressed item.",
+  },
+  stats: {
+    title: "Stats Band",
+    exports: "StatsBand",
+    propsNote:
+      'stats take { value, label, prefix?, suffix?, decimals?, trend? } — each number ticks up once scrolled into view, and trend tints its hint positive for "up", negative for "down".',
+  },
+  team: {
+    title: "Team Grid",
+    exports: "TeamGrid",
+    propsNote:
+      "members take { name, role, bio, initials?, links? }; initials derive from the name when omitted and link chips reveal on hover. heading and subheading top the section.",
+  },
   testimonials: {
     title: "Testimonials",
     exports: "Testimonials",
     propsNote:
       "items ({ quote, name, role }) split evenly across two counter-drifting rows; speed sets the loop pace. Hover pauses the row under the cursor; reduced motion renders a static wrapped grid.",
+  },
+  topbar: {
+    title: "Topbar",
+    exports: "Topbar",
+    propsNote:
+      "leading slots a breadcrumb or page title; searchHint/searchShortcut shape the search button and onSearchClick wires it to your palette. userName/userDetail and menuItems ({ label, onClick?, danger? }) drive the avatar dropdown, with full keyboard navigation.",
   },
   "chat-widget": {
     title: "Chat Widget",
