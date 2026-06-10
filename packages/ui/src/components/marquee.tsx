@@ -73,9 +73,8 @@ export function Marquee({
         )}
         style={{
           animation: animate
-            ? `lm-marquee-scroll ${duration}s linear infinite`
+            ? `lm-marquee-scroll ${duration}s linear infinite ${direction === "right" ? "reverse" : "normal"}`
             : undefined,
-          animationDirection: direction === "right" ? "reverse" : undefined,
         }}
       >
         <div ref={segmentRef} className={segmentClass} style={{ gap, paddingRight: gap }}>

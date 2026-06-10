@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lumora-web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@lumora/web", "dev"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}
