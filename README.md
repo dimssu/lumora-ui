@@ -48,6 +48,19 @@ apps/web         Docs & live playground (Next.js)
 skills/          Claude Skill for AI-assisted page composition
 ```
 
+## Teach your agent Lumora
+
+The repo ships a Claude-compatible agent skill at `skills/lumora-builder/` —
+composition rules, the motion language, a full component catalog, and three
+ready page recipes (landing page, dashboard, AI docs page). With it installed,
+a coding agent can assemble polished Lumora screens on request.
+
+- **Claude Code**: copy (or symlink) `skills/lumora-builder/` into
+  `~/.claude/skills/` (global) or your project's `.claude/skills/` — this repo
+  already links it for local development.
+- **Claude web/desktop**: download the zip from the docs site's `/skill` page
+  and upload it under Settings → Capabilities → Skills.
+
 ## Design language
 
 Dark-first surfaces, warm off-white type, and a single champagne accent —
