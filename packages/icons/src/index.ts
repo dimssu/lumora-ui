@@ -39,3 +39,53 @@ export { StarIcon } from "./icons/star";
 export { DownloadIcon } from "./icons/download";
 export { LockIcon } from "./icons/lock";
 export { SparkleIcon } from "./icons/sparkle";
+
+// Files & data
+export { FileIcon } from "./icons/file";
+export { FolderIcon } from "./icons/folder";
+export { FolderOpenIcon } from "./icons/folder-open";
+export { ClipboardIcon } from "./icons/clipboard";
+export { ArchiveIcon } from "./icons/archive";
+export { InboxIcon } from "./icons/inbox";
+
+// Charts
+export { ChartBarIcon } from "./icons/chart-bar";
+export { ChartLineIcon } from "./icons/chart-line";
+export { ChartPieIcon } from "./icons/chart-pie";
+
+// Commerce
+export { CartIcon } from "./icons/cart";
+export { TagIcon } from "./icons/tag";
+export { CreditCardIcon } from "./icons/credit-card";
+export { GiftIcon } from "./icons/gift";
+export { WalletIcon } from "./icons/wallet";
+
+// Time
+export { ClockIcon } from "./icons/clock";
+export { CalendarIcon } from "./icons/calendar";
+export { HourglassIcon } from "./icons/hourglass";
+export { TimerIcon } from "./icons/timer";
+
+// Devices
+export { PhoneIcon } from "./icons/phone";
+export { MonitorIcon } from "./icons/monitor";
+export { CameraIcon } from "./icons/camera";
+export { MicIcon } from "./icons/mic";
+
+// Navigation
+export { HomeIcon } from "./icons/home";
+export { GlobeIcon } from "./icons/globe";
+export { MapPinIcon } from "./icons/map-pin";
+export { CompassIcon } from "./icons/compass";
+
+// System
+export { FilterIcon } from "./icons/filter";
+export { LinkIcon } from "./icons/link";
+export { BookmarkIcon } from "./icons/bookmark";
+export { ShieldIcon } from "./icons/shield";
+export { ZapIcon } from "./icons/zap";
+export { WifiIcon } from "./icons/wifi";
+export { TerminalIcon } from "./icons/terminal";
+export { CodeIcon } from "./icons/code";
+export { GitBranchIcon } from "./icons/git-branch";
+export { CloudIcon } from "./icons/cloud";
