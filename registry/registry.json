@@ -70,6 +70,20 @@
       ]
     },
     {
+      "name": "announcement",
+      "category": "component",
+      "path": "packages/ui/src/components/announcement.tsx",
+      "description": "Slim top banner that slides down on mount and, when dismissed, collapses its height and fades away.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "aurora-background",
       "category": "component",
       "path": "packages/ui/src/components/aurora-background.tsx",
@@ -84,10 +98,53 @@
       ]
     },
     {
+      "name": "avatar",
+      "category": "component",
+      "path": "packages/ui/src/components/avatar.tsx",
+      "description": "Identity disc with a graceful fallback: if the image errors, initials crossfade in so the swap never flashes.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "badge",
+      "category": "component",
+      "path": "packages/ui/src/components/badge.tsx",
+      "description": "Status chip: a quiet pill whose optional dot can breathe a slow expanding ring to mark live state.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "class-variance-authority",
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "beam-grid",
       "category": "component",
       "path": "packages/ui/src/components/beam-grid.tsx",
       "description": "A faint line grid where occasional beams of lumen travel along random grid lines — horizontal beams slide right, vertical beams fall — on long, staggered loops.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "breadcrumbs",
+      "category": "component",
+      "path": "packages/ui/src/components/breadcrumbs.tsx",
+      "description": "Path trail where hovering a link slides a soft lumen underline in from the left.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -108,6 +165,33 @@
       ],
       "npmDeps": [
         "class-variance-authority",
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "card",
+      "category": "component",
+      "path": "packages/ui/src/components/card.tsx",
+      "description": "The Lumora base surface.",
+      "internalDeps": [
+        "lib/cn"
+      ],
+      "npmDeps": [
+        "class-variance-authority",
+        "react"
+      ]
+    },
+    {
+      "name": "carousel",
+      "category": "component",
+      "path": "packages/ui/src/components/carousel.tsx",
+      "description": "Drag-to-snap carousel: the track follows your pointer with elastic edges and settles on the nearest slide when released.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
         "motion",
         "react"
       ]
@@ -142,6 +226,20 @@
       ]
     },
     {
+      "name": "file-dropzone",
+      "category": "component",
+      "path": "packages/ui/src/components/file-dropzone.tsx",
+      "description": "Drop zone whose dashed border brightens into a soft lumen glow while a file hovers over it, the upload glyph nudging upward in anticipation.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "gradient-text",
       "category": "component",
       "path": "packages/ui/src/components/gradient-text.tsx",
@@ -159,6 +257,20 @@
       "category": "component",
       "path": "packages/ui/src/components/input.tsx",
       "description": "Floating-label text input: the label sits where a placeholder would, then rises and shrinks once the field is focused or filled, while a 1px accent underline draws in from the left.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "kbd",
+      "category": "component",
+      "path": "packages/ui/src/components/kbd.tsx",
+      "description": "A keyboard key cap with a raised bottom edge.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -210,10 +322,121 @@
       ]
     },
     {
+      "name": "otp-input",
+      "category": "component",
+      "path": "packages/ui/src/components/otp-input.tsx",
+      "description": "One-time-code entry: one cell per digit, each popping on a snappy spring as it fills while the accent ring tracks the active cell.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "popover",
+      "category": "component",
+      "path": "packages/ui/src/components/popover.tsx",
+      "description": "Anchored floating panel: opens from its trigger with a drift-and-scale breath out of the anchor side, flipping to the opposite side when the viewport is too tight.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "progress",
+      "category": "component",
+      "path": "packages/ui/src/components/progress.tsx",
+      "description": "Progress bar: the determinate fill glides to each new value on a weighty spring; `indeterminate` sends a soft lumen segment traveling the track on a slow loop (a static mid-fill under reduced motion).",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "rating",
+      "category": "component",
+      "path": "packages/ui/src/components/rating.tsx",
+      "description": "Star rating with slider semantics: hovering previews the fill sweeping up to the pointer with a tiny per-star stagger, clicking commits with a pop on the chosen star, and arrow keys adjust the value in steps (halves with `allowHalf`).",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "scroll-progress",
       "category": "component",
       "path": "packages/ui/src/components/scroll-progress.tsx",
       "description": "A fixed 2px accent bar that fills as the page scrolls, smoothed by a spring so the fill glides rather than jitters.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "category": "component",
+      "path": "packages/ui/src/components/segmented-control.tsx",
+      "description": "Pill segment switcher: the raised pill glides between segments as a shared element on a snappy spring.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "select",
+      "category": "component",
+      "path": "packages/ui/src/components/select.tsx",
+      "description": "Single-select listbox: the menu drifts open with a slight scale while options cascade in at 15ms intervals; the chosen option carries a check glyph.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "category": "component",
+      "path": "packages/ui/src/components/skeleton.tsx",
+      "description": "Loading placeholder: a soft surface block with a slow light sweep gliding across on a 1.8s loop.",
+      "internalDeps": [
+        "lib/cn"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "slider",
+      "category": "component",
+      "path": "packages/ui/src/components/slider.tsx",
+      "description": "Range slider: the accent-filled track follows a thumb that swells on a snappy spring while dragged, with an optional value bubble floating above it.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -242,6 +465,20 @@
       "category": "component",
       "path": "packages/ui/src/components/spotlight-card.tsx",
       "description": "A surface card whose border lights up and a soft radial lumen glow trails the cursor; the glow fades in on enter and out on leave.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "stepper",
+      "category": "component",
+      "path": "packages/ui/src/components/stepper.tsx",
+      "description": "Step indicator whose connector lines fill with the lumen as steps complete, numbers crossfading into a drawn-in check.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -293,10 +530,83 @@
       ]
     },
     {
+      "name": "timeline",
+      "category": "component",
+      "path": "packages/ui/src/components/timeline.tsx",
+      "description": "Vertical event list: the spine draws itself downward as the list scrolls into view, while each node pops and its content drifts in the first time it enters the viewport.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "toast",
+      "category": "component",
+      "path": "packages/ui/src/components/toast.tsx",
+      "description": "Fire a toast from anywhere — components, event handlers, async code.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react",
+        "react-dom"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "category": "component",
+      "path": "packages/ui/src/components/tooltip.tsx",
+      "description": "Anchored tooltip that waits `delay` ms, then drifts in with a slight rise toward its anchor.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "typewriter",
       "category": "component",
       "path": "packages/ui/src/components/typewriter.tsx",
       "description": "Types each word character by character beside a blinking caret, holds, deletes, and moves to the next.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "auth-form",
+      "category": "block",
+      "path": "packages/ui/src/blocks/auth-form.tsx",
+      "description": "Centered auth card resting on a faint lumen glow.",
+      "internalDeps": [
+        "button",
+        "input",
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "changelog",
+      "category": "block",
+      "path": "packages/ui/src/blocks/changelog.tsx",
+      "description": "Release notes with a hairline spine down the left edge.",
       "internalDeps": [
         "lib/cn",
         "lib/motion"
@@ -379,6 +689,20 @@
       ]
     },
     {
+      "name": "logo-strip",
+      "category": "block",
+      "path": "packages/ui/src/blocks/logo-strip.tsx",
+      "description": "A \"trusted by\" belt of fictional text wordmarks.",
+      "internalDeps": [
+        "lib/cn",
+        "marquee"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "navbar",
       "category": "block",
       "path": "packages/ui/src/blocks/navbar.tsx",
@@ -409,12 +733,69 @@
       ]
     },
     {
+      "name": "sidebar",
+      "category": "block",
+      "path": "packages/ui/src/blocks/sidebar.tsx",
+      "description": "Dashboard side navigation.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "stats",
+      "category": "block",
+      "path": "packages/ui/src/blocks/stats.tsx",
+      "description": "A horizontal band of large counting stats.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion",
+        "number-ticker"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "team",
+      "category": "block",
+      "path": "packages/ui/src/blocks/team.tsx",
+      "description": "Team section.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "testimonials",
       "category": "block",
       "path": "packages/ui/src/blocks/testimonials.tsx",
       "description": "Two rows of quote cards drift past each other in opposite directions on a seamless loop, pausing under the cursor with soft fades at either edge.",
       "internalDeps": [
         "lib/cn"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "topbar",
+      "category": "block",
+      "path": "packages/ui/src/blocks/topbar.tsx",
+      "description": "Dashboard top bar.",
+      "internalDeps": [
+        "lib/cn",
+        "lib/motion"
       ],
       "npmDeps": [
         "motion",
@@ -466,6 +847,19 @@
       ]
     },
     {
+      "name": "archive",
+      "category": "icon",
+      "path": "packages/icons/src/icons/archive.tsx",
+      "description": "Archive.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "arrow-right",
       "category": "icon",
       "path": "packages/icons/src/icons/arrow-right.tsx",
@@ -505,6 +899,97 @@
       ]
     },
     {
+      "name": "bookmark",
+      "category": "icon",
+      "path": "packages/icons/src/icons/bookmark.tsx",
+      "description": "Bookmark.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "calendar",
+      "category": "icon",
+      "path": "packages/icons/src/icons/calendar.tsx",
+      "description": "Calendar.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "camera",
+      "category": "icon",
+      "path": "packages/icons/src/icons/camera.tsx",
+      "description": "Camera.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "cart",
+      "category": "icon",
+      "path": "packages/icons/src/icons/cart.tsx",
+      "description": "Cart.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "chart-bar",
+      "category": "icon",
+      "path": "packages/icons/src/icons/chart-bar.tsx",
+      "description": "Bar chart.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "chart-line",
+      "category": "icon",
+      "path": "packages/icons/src/icons/chart-line.tsx",
+      "description": "Line chart.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "chart-pie",
+      "category": "icon",
+      "path": "packages/icons/src/icons/chart-pie.tsx",
+      "description": "Pie chart.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "check",
       "category": "icon",
       "path": "packages/icons/src/icons/check.tsx",
@@ -531,10 +1016,75 @@
       ]
     },
     {
+      "name": "clipboard",
+      "category": "icon",
+      "path": "packages/icons/src/icons/clipboard.tsx",
+      "description": "Clipboard.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "clock",
+      "category": "icon",
+      "path": "packages/icons/src/icons/clock.tsx",
+      "description": "Clock.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "close",
       "category": "icon",
       "path": "packages/icons/src/icons/close.tsx",
       "description": "Close.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "cloud",
+      "category": "icon",
+      "path": "packages/icons/src/icons/cloud.tsx",
+      "description": "Cloud.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "code",
+      "category": "icon",
+      "path": "packages/icons/src/icons/code.tsx",
+      "description": "Code.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "compass",
+      "category": "icon",
+      "path": "packages/icons/src/icons/compass.tsx",
+      "description": "Compass.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -557,6 +1107,19 @@
       ]
     },
     {
+      "name": "credit-card",
+      "category": "icon",
+      "path": "packages/icons/src/icons/credit-card.tsx",
+      "description": "Credit card.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "download",
       "category": "icon",
       "path": "packages/icons/src/icons/download.tsx",
@@ -570,10 +1133,153 @@
       ]
     },
     {
+      "name": "file",
+      "category": "icon",
+      "path": "packages/icons/src/icons/file.tsx",
+      "description": "File.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "filter",
+      "category": "icon",
+      "path": "packages/icons/src/icons/filter.tsx",
+      "description": "Filter.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "folder",
+      "category": "icon",
+      "path": "packages/icons/src/icons/folder.tsx",
+      "description": "Folder.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "folder-open",
+      "category": "icon",
+      "path": "packages/icons/src/icons/folder-open.tsx",
+      "description": "Folder, open.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "gift",
+      "category": "icon",
+      "path": "packages/icons/src/icons/gift.tsx",
+      "description": "Gift.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "git-branch",
+      "category": "icon",
+      "path": "packages/icons/src/icons/git-branch.tsx",
+      "description": "Git branch.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "globe",
+      "category": "icon",
+      "path": "packages/icons/src/icons/globe.tsx",
+      "description": "Globe.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "heart",
       "category": "icon",
       "path": "packages/icons/src/icons/heart.tsx",
       "description": "Heart.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "home",
+      "category": "icon",
+      "path": "packages/icons/src/icons/home.tsx",
+      "description": "Home.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "hourglass",
+      "category": "icon",
+      "path": "packages/icons/src/icons/hourglass.tsx",
+      "description": "Hourglass.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "inbox",
+      "category": "icon",
+      "path": "packages/icons/src/icons/inbox.tsx",
+      "description": "Inbox.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "link",
+      "category": "icon",
+      "path": "packages/icons/src/icons/link.tsx",
+      "description": "Link.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -609,6 +1315,19 @@
       ]
     },
     {
+      "name": "map-pin",
+      "category": "icon",
+      "path": "packages/icons/src/icons/map-pin.tsx",
+      "description": "Map pin.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "menu",
       "category": "icon",
       "path": "packages/icons/src/icons/menu.tsx",
@@ -622,10 +1341,49 @@
       ]
     },
     {
+      "name": "mic",
+      "category": "icon",
+      "path": "packages/icons/src/icons/mic.tsx",
+      "description": "Mic.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "monitor",
+      "category": "icon",
+      "path": "packages/icons/src/icons/monitor.tsx",
+      "description": "Monitor.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "moon",
       "category": "icon",
       "path": "packages/icons/src/icons/moon.tsx",
       "description": "Moon.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "phone",
+      "category": "icon",
+      "path": "packages/icons/src/icons/phone.tsx",
+      "description": "Phone.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -713,6 +1471,19 @@
       ]
     },
     {
+      "name": "shield",
+      "category": "icon",
+      "path": "packages/icons/src/icons/shield.tsx",
+      "description": "Shield.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "sparkle",
       "category": "icon",
       "path": "packages/icons/src/icons/sparkle.tsx",
@@ -752,6 +1523,45 @@
       ]
     },
     {
+      "name": "tag",
+      "category": "icon",
+      "path": "packages/icons/src/icons/tag.tsx",
+      "description": "Tag.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "terminal",
+      "category": "icon",
+      "path": "packages/icons/src/icons/terminal.tsx",
+      "description": "Terminal.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "timer",
+      "category": "icon",
+      "path": "packages/icons/src/icons/timer.tsx",
+      "description": "Timer.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "trash",
       "category": "icon",
       "path": "packages/icons/src/icons/trash.tsx",
@@ -769,6 +1579,45 @@
       "category": "icon",
       "path": "packages/icons/src/icons/volume.tsx",
       "description": "Volume.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "wallet",
+      "category": "icon",
+      "path": "packages/icons/src/icons/wallet.tsx",
+      "description": "Wallet.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "wifi",
+      "category": "icon",
+      "path": "packages/icons/src/icons/wifi.tsx",
+      "description": "Wifi.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "zap",
+      "category": "icon",
+      "path": "packages/icons/src/icons/zap.tsx",
+      "description": "Zap.",
       "internalDeps": [
         "lib/icon"
       ],
