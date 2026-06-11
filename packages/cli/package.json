@@ -22,7 +22,7 @@
     "cli"
   ],
   "bin": {
-    "lumora": "./bin/lumora.js"
+    "lumora": "bin/lumora.js"
   },
   "files": [
     "bin",
