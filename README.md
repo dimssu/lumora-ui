@@ -25,8 +25,8 @@ tree-shakable down to the single component.
 ## Quick start
 
 ```bash
-npx lumora@latest init        # wires Tailwind + tokens into your app
-npx lumora@latest add button animated-tooltip
+npx lumora-ui@latest init        # wires Tailwind + tokens into your app
+npx lumora-ui@latest add button animated-tooltip
 ```
 
 Or use the workspace packages directly:

@@ -518,7 +518,7 @@ async function cmdInit() {
   console.log(`       otherwise add ${cyan(`@source "./${config.componentDir}";`)} to your CSS.`);
   console.log(`       Tailwind v3 — add ${cyan(`"./${config.componentDir}/**/*.{ts,tsx}"`)} to \`content\`.`);
   console.log(`\n  4. Add your first component:`);
-  console.log(`       ${cyan("npx lumora add button")}\n`);
+  console.log(`       ${cyan("npx lumora-ui@latest add button")}\n`);
 }
 
 /** @param {string[]} names */
@@ -625,9 +625,9 @@ ${bold("Environment")}
   ${cyan("LUMORA_REGISTRY")}   registry.json URL or file path ${dim("(overrides the default)")}
 
 ${bold("Examples")}
-  npx lumora init
-  npx lumora add button animated-tooltip
-  npx lumora add block/hero icon/mail --overwrite
+  npx lumora-ui@latest init
+  npx lumora-ui@latest add button animated-tooltip
+  npx lumora-ui@latest add block/hero icon/mail --overwrite
 `);
 }
 

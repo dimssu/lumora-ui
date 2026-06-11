@@ -25,11 +25,11 @@ export function findComponent(slug: string): RegistryItem | undefined {
 }
 
 export function addCommand(name: string): string {
-  return `npx lumora@latest add ${name}`;
+  return `npx lumora-ui@latest add ${name}`;
 }
 
 export function addIconCommand(name: string): string {
-  return `npx lumora@latest add icon/${name}`;
+  return `npx lumora-ui@latest add icon/${name}`;
 }
 
 export function importPath(item: RegistryItem): string {

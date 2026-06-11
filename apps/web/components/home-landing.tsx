@@ -172,7 +172,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Can I install just one component?",
     answer:
-      "That's the intended path. npx lumora@latest add button copies the source file plus its small internal deps (cn, the motion springs) into your project, so you own the code from the first minute.",
+      "That's the intended path. npx lumora-ui@latest add button copies the source file plus its small internal deps (cn, the motion springs) into your project, so you own the code from the first minute.",
   },
   {
     question: "Does Lumora work with React Server Components?",

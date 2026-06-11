@@ -1,6 +1,7 @@
 {
   "name": "@lumora/icons",
   "version": "0.1.0",
+  "private": true,
   "description": "Animated icons for Lumora UI. Every glyph is an interaction.",
   "type": "module",
   "sideEffects": false,

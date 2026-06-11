@@ -1,9 +1,26 @@
 {
-  "name": "lumora",
+  "name": "lumora-ui",
   "version": "0.1.0",
   "description": "Installer CLI for Lumora UI — copies motion-first React components into your project as source.",
   "type": "module",
   "license": "MIT",
+  "homepage": "https://github.com/dimssu/lumora-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimssu/lumora-ui.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "tailwind",
+    "motion",
+    "framer-motion",
+    "animation",
+    "design-system",
+    "cli"
+  ],
   "bin": {
     "lumora": "./bin/lumora.js"
   },
@@ -11,6 +28,9 @@
     "bin",
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=18.18.0"
   },

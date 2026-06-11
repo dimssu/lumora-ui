@@ -48,5 +48,5 @@ Icons are `aria-hidden` by default (decorative). Pass `label="..."` to get
 Prefer copy-paste ownership? Pull a single icon into your project:
 
 ```sh
-npx lumora@latest add icon/mail
+npx lumora-ui@latest add icon/mail
 ```

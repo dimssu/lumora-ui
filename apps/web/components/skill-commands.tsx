@@ -51,22 +51,22 @@ const prompts: { prompt: string; result: string }[] = [
 /* B: the real CLI commands, pulled from packages/cli/README.md. */
 const cliCommands: { command: string; caption: string; note: string }[] = [
   {
-    command: "npx lumora@latest init",
+    command: "npx lumora-ui@latest init",
     caption: "terminal — set up",
     note: "Wires Tailwind and the design tokens, writes lumora.json, and creates the component directories.",
   },
   {
-    command: "npx lumora@latest add button animated-tooltip",
+    command: "npx lumora-ui@latest add button animated-tooltip",
     caption: "terminal — add components",
     note: "Copies component source into your repo, pulling any shared lib files and rewriting imports to your aliases.",
   },
   {
-    command: "npx lumora@latest add block/hero ai/command-menu icon/mail",
+    command: "npx lumora-ui@latest add block/hero ai/command-menu icon/mail",
     caption: "terminal — add by category",
     note: "Blocks, AI surfaces, and icons are addressed by prefix — block/, ai/, icon/.",
   },
   {
-    command: "npx lumora@latest list",
+    command: "npx lumora-ui@latest list",
     caption: "terminal — browse",
     note: "Pretty-prints the whole registry by category, each with its one-line description.",
   },

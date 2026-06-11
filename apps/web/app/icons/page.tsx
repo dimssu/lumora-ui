@@ -20,7 +20,7 @@ export default function IconsPage() {
           micro-animation. Hover a tile to play it, tune the whole set below,
           and click any icon to copy its install command —{" "}
           <code className="rounded-[var(--lm-radius-sm)] border border-[var(--lm-border)] bg-[var(--lm-surface)] px-1.5 py-0.5 font-mono text-sm">
-            npx lumora@latest add icon/&lt;name&gt;
+            npx lumora-ui@latest add icon/&lt;name&gt;
           </code>
           .
         </p>

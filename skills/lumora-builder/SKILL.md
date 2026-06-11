@@ -40,7 +40,7 @@ import { springs } from "@lumora/ui/lib/motion";
 
 The barrel (`import { Button } from "@lumora/ui"`) also works and is
 tree-shakable. Apps that installed components as source via the CLI
-(`npx lumora@latest add button`) import from their own
+(`npx lumora-ui@latest add button`) import from their own
 `components/lumora/<name>` path instead — same APIs either way.
 
 ## The token system (required setup)

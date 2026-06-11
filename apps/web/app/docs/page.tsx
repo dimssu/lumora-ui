@@ -26,10 +26,10 @@ const sections = [
 ];
 
 const installCode = `# scaffold tokens + Tailwind wiring (recommended first run)
-npx lumora@latest init
+npx lumora-ui@latest init
 
 # then own the source, one component at a time
-npx lumora@latest add button animated-tooltip block/hero`;
+npx lumora-ui@latest add button animated-tooltip block/hero`;
 
 const workspaceCode = `# inside a monorepo where @lumora/ui is a workspace package
 pnpm add @lumora/ui @lumora/icons motion`;

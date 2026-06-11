@@ -15,7 +15,7 @@ function pickReply(text: string): string {
     return "Theming is one attribute: dark is the resting :root, and data-theme=\"light\" on any ancestor flips the full token set — surfaces, strokes, type, the lumen, and shadows. Override --lm-accent to retheme the glow.";
   }
   if (q.includes("install") || q.includes("add")) {
-    return "Run npx lumora@latest init to wire Tailwind and the tokens, then npx lumora@latest add <component> to copy the source into your repo. No black-box package — you own every line.";
+    return "Run npx lumora-ui@latest init to wire Tailwind and the tokens, then npx lumora-ui@latest add <component> to copy the source into your repo. No black-box package — you own every line.";
   }
   return "This reply is streaming from a local async generator, word by word — no network, no model. Wire onSend to your own backend and return either a Promise<string> or an AsyncIterable<string>; the widget handles streaming, the typing indicator, and scroll position.";
 }

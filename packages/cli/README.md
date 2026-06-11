@@ -18,8 +18,8 @@ is no runtime dependency on this package.
 ## Quick start
 
 ```sh
-npx lumora@latest init
-npx lumora@latest add button animated-tooltip icon/mail block/hero
+npx lumora-ui@latest init
+npx lumora-ui@latest add button animated-tooltip icon/mail block/hero
 ```
 
 ## Commands
@@ -37,7 +37,7 @@ Sets your project up:
   Tailwind scans the installed files
 
 ```sh
-npx lumora@latest init
+npx lumora-ui@latest init
 ```
 
 Pass `--overwrite` to refresh a previously copied `lumora.css`.
@@ -60,9 +60,9 @@ Names are addressed by category:
 | icon       | `icon/mail`        | `components/icons/`           |
 
 ```sh
-npx lumora@latest add button
-npx lumora@latest add block/hero ai/command-menu icon/mail
-npx lumora@latest add button --overwrite   # replace existing files
+npx lumora-ui@latest add button
+npx lumora-ui@latest add block/hero ai/command-menu icon/mail
+npx lumora-ui@latest add button --overwrite   # replace existing files
 ```
 
 Existing files are never replaced unless you pass `--overwrite`. After
@@ -75,7 +75,7 @@ Pretty-prints everything in the registry, grouped by category, with each
 component's one-line description.
 
 ```sh
-npx lumora@latest list
+npx lumora-ui@latest list
 ```
 
 ## Configuration (`lumora.json`)

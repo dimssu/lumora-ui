@@ -107,7 +107,7 @@ assume a provider.
 same props via `IconBase`: `size` (20), `strokeWidth` (1.75), and
 `animate: "hover" | "mount" | "loop" | "none"` (hover). Icons are
 decorative by default; naming one via `aria-label` gives it `role="img"`.
-Install standalone copies with `npx lumora@latest add icon/<name>`.
+Install standalone copies with `npx lumora-ui@latest add icon/<name>`.
 
 ## Lib (`packages/ui/src/lib/`)
 
