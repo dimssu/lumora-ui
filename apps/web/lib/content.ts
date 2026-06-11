@@ -15,6 +15,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "type switches between a single open panel and several at once; defaultValue picks the row(s) open on mount. Compose rows with AccordionItem, each carrying a unique value and a title node.",
   },
+  alert: {
+    title: "Alert",
+    exports: "Alert",
+    propsNote:
+      'tone: neutral | accent | positive | negative — the negative tone announces assertively via role="alert", the rest stay polite. title bolds the first line and icon overrides the tone glyph. dismissible (default false) adds a close button that collapses the height while it fades; onDismiss fires after.',
+  },
   "animated-tabs": {
     title: "Animated Tabs",
     exports: "AnimatedTabs",
@@ -57,6 +63,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "density sets the grid cell size in px (default 56); beamCount controls how many lumen beams travel the lines (default 3). Beams disappear under reduced motion, leaving the quiet grid.",
   },
+  "border-beam": {
+    title: "Border Beam",
+    exports: "BorderBeam",
+    propsNote:
+      'Wrap a single child; the wrapper is rounded at radius-lg by default, so match the child\'s radius (or override via className). duration is seconds per lap (default 6), beamWidth the painted ring in px (default 2), and color picks "lumen" or "dusk". Reduced motion leaves a static gradient ring.',
+  },
   breadcrumbs: {
     title: "Breadcrumbs",
     exports: "Breadcrumbs",
@@ -81,6 +93,18 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "Each child is a slide. itemsPerView shows several at once — fractions peek the next edge — and gap spaces them in px. Drag to flick with elastic edges, or steer with the arrows, dots and keyboard; showArrows/showDots hide the chrome.",
   },
+  checkbox: {
+    title: "Checkbox",
+    exports: "Checkbox",
+    propsNote:
+      "Works controlled (checked + onCheckedChange) or uncontrolled (defaultChecked). label and description render beside the box, wired via aria-labelledby and aria-describedby; indeterminate shows a dash and reports mixed to assistive tech. The check stroke draws in along its path.",
+  },
+  "cursor-trail": {
+    title: "Cursor Trail",
+    exports: "CursorTrail",
+    propsNote:
+      "images cycle in order as cards spawn; threshold is pointer travel in px between spawns (default 28). maxItems caps the live cards (default 8) and cardWidth sizes them in px (default 96, 4:5 ratio). Cards are decorative and render beneath the children; reduced motion spawns none.",
+  },
   dialog: {
     title: "Dialog",
     exports: "Dialog",
@@ -93,17 +117,59 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "magnification sets the peak scale under the cursor (default 1.7). Each DockItem needs a label (its tooltip) and an optional size in px; items magnify with cursor proximity and hold still under reduced motion.",
   },
+  drawer: {
+    title: "Drawer",
+    exports: "Drawer",
+    propsNote:
+      'Controlled: pass open and onOpenChange. side: "left" | "right" | "bottom" picks the edge (default right); title heads the panel and labels it for assistive tech. Drag the panel past 30% of its size (or flick) to dismiss; Escape and overlay clicks close it, with focus trapped inside and restored on close.',
+  },
+  "dropdown-menu": {
+    title: "Dropdown Menu",
+    exports: "DropdownMenu",
+    propsNote:
+      'trigger fills the built-in button; items mixes plain actions ({ label, icon?, onSelect, destructive?, disabled? }) with { kind: "checkbox" | "separator" | "label" } entries — checkbox items toggle via onCheckedChange and keep the menu open. align: "start" | "end" sets the anchored edge; the menu flips above when space runs out, with arrows, Home/End, typeahead and Enter on the keyboard.',
+  },
+  "elastic-stack": {
+    title: "Elastic Stack",
+    exports: "ElasticStack",
+    propsNote:
+      "Children are the cards, front to back, each filling the container — give the stack an explicit size via className. threshold is the drag distance plus flick momentum needed to fling the top card (default 100); onTopChange reports the original index that lands on top. Arrow keys cycle the deck and the dots jump straight to a card.",
+  },
   "file-dropzone": {
     title: "File Dropzone",
     exports: "FileDropzone",
     propsNote:
       'onFiles receives the full accepted list whenever it changes; accept and multiple mirror the native input, and label swaps the prompt. Accepted files stack below in an animated list — removing one collapses its row. Click or press Enter to open the picker.',
   },
+  "flip-text": {
+    title: "Flip Text",
+    exports: "FlipText",
+    propsNote:
+      "words cycles on a timer; interval is ms each word holds (default 2600). Characters tip away and in around the X axis with an 18ms stagger while the container width glides between words; a sr-only live region announces each word and reduced motion crossfades instead.",
+  },
+  folder: {
+    title: "Folder",
+    exports: "Folder",
+    propsNote:
+      "items takes up to three nodes that rise out of the slot with a stagger and a slight fan; label captions the folder and size sets its width in px (default 116). Hovering tilts the lid open on its bottom hinge; clicking toggles it held open — real button semantics with aria-expanded.",
+  },
+  "glitch-text": {
+    title: "Glitch Text",
+    exports: "GlitchText",
+    propsNote:
+      'children must be a plain string. trigger: "hover" fires a ~350ms burst on mouse enter, "loop" repeats every ~3s; intensity (0–1, default 0.6) scales how far the lumen and dusk copies stray. The text never glitches under reduced motion.',
+  },
   "gradient-text": {
     title: "Gradient Text",
     exports: "GradientText",
     propsNote:
       "Wrap any inline text; speed sets seconds per full gradient sweep (default 6). The gradient holds still under reduced motion so the text stays legible.",
+  },
+  "hover-link": {
+    title: "Hover Link",
+    exports: "HoverLink",
+    propsNote:
+      'A real anchor — all native <a> props pass through. variant: "slide" wipes the underline in from the left and out to the right, "center" blooms from the middle, "draw" overshoots past the text on a spring before settling. arrow appends a glyph that nudges up-right; keyboard focus shows the underline too.',
   },
   input: {
     title: "Input",
@@ -129,6 +195,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "speed is travel in px per second (default 48); direction flips the belt; pauseOnHover stops it under the cursor; fade soft-masks both edges; gap spaces the items. The duplicate loop copy is aria-hidden.",
   },
+  "morph-text": {
+    title: "Morph Text",
+    exports: "MorphText",
+    propsNote:
+      "words cycles on a timer; interval is ms each word holds (default 2600). The outgoing word blurs and fades while the incoming one sharpens out of the same blur with a subtle tracking widen, overlapping ~40% of the transition; a sr-only live region announces each word.",
+  },
   "number-ticker": {
     title: "Number Ticker",
     exports: "NumberTicker",
@@ -140,6 +212,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     exports: "OtpInput",
     propsNote:
       "length sets the digit count (default 6). onChange fires per keystroke and onComplete once every cell is filled; pasting a full code distributes it across the cells. label names the group for assistive tech.",
+  },
+  pagination: {
+    title: "Pagination",
+    exports: "Pagination",
+    propsNote:
+      'count is the total number of pages; the active pill glides between numbers as a shared element. Works controlled via page/onPageChange or uncontrolled via defaultPage. siblingCount sets how many neighbors stay visible around the current page before the range collapses into ellipses — first and last are always pinned.',
   },
   popover: {
     title: "Popover",
@@ -153,11 +231,23 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "value is completion from 0–100; the fill glides to each new value on the glide spring. indeterminate sends a lumen segment traveling the track instead, and gradient blends the fill from the lumen into the dusk accent.",
   },
+  "radio-group": {
+    title: "Radio Group",
+    exports: "RadioGroup, RadioItem",
+    propsNote:
+      "RadioGroup works controlled via value/onValueChange or uncontrolled via defaultValue, with orientation switching the layout. Each RadioItem carries a value, a label and an optional description; selecting one pops the dot in and blooms a lumen ring once. Arrow keys move and select in a single gesture.",
+  },
   rating: {
     title: "Rating",
     exports: "Rating",
     propsNote:
       "count sets the stars (default 5); works controlled via value/onValueChange or uncontrolled via defaultValue. allowHalf enables half-star steps, readOnly locks it to display, and arrow keys adjust the value from the keyboard.",
+  },
+  "reveal-list": {
+    title: "Reveal List",
+    exports: "RevealList",
+    propsNote:
+      "items take { title, meta?, src, href? } — hovering a row summons a floating preview image that trails the cursor on a soft spring while the other rows dim; keyboard focus pins the preview to the row's right edge. Rows render as links when href is set, otherwise as buttons firing onItemClick.",
   },
   "scroll-progress": {
     title: "Scroll Progress",
@@ -189,6 +279,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "Controlled (value + onValueChange) or uncontrolled (defaultValue); min, max and step bound the range. bubble floats the value above the thumb while it is dragged or focused, and formatValue shapes its text.",
   },
+  spinner: {
+    title: "Spinner",
+    exports: "Spinner",
+    propsNote:
+      'variant picks the loader: "orbit" (default) circles a comet arc around a quiet ring, "pulse" breathes a lumen dot, "bars" waves three bars. Sizes sm | md | lg. label (default "Loading") names it for screen readers via role="status"; under reduced motion every variant settles into a slow opacity pulse.',
+  },
   spotlight: {
     title: "Spotlight",
     exports: "Spotlight",
@@ -213,11 +309,23 @@ export const componentMeta: Record<string, ComponentMeta> = {
     propsNote:
       "Works controlled (checked + onCheckedChange) or uncontrolled (defaultChecked). Renders a real button with role=switch; Space and Enter toggle it, and the knob slides on the snap spring.",
   },
+  table: {
+    title: "Table",
+    exports: "Table, TableHeader, TableBody, TableRow, TableHead, TableCell",
+    propsNote:
+      "Composable table pieces with quiet hairline borders and rows that brighten on hover. stickyHeader on Table pins the head inside the scroll wrapper. sortable on a TableHead renders a button cycling asc/desc with a spring-rotated chevron and aria-sort — ordering is delegated through onSort, so your data stays yours.",
+  },
   "text-reveal": {
     title: "Text Reveal",
     exports: "TextReveal",
     propsNote:
       "text is the paragraph to reveal; each word brightens and sheds blur as it crosses a band of the viewport. Give the wrapper vertical room so there is scroll to bind to.",
+  },
+  textarea: {
+    title: "Textarea",
+    exports: "Textarea",
+    propsNote:
+      "label floats as the placeholder and rises on focus or value, with the accent underline drawing in from the left — the multiline sibling of Input. autoGrow (default true) resizes to the content, capped by maxRows before it scrolls. error paints the message and underline in the negative tone.",
   },
   "tilt-card": {
     title: "Tilt Card",
@@ -236,6 +344,12 @@ export const componentMeta: Record<string, ComponentMeta> = {
     exports: "toast, Toaster",
     propsNote:
       "Mount Toaster once near the app root — it portals to document.body and stacks toasts bottom-right. Call toast({ title, description?, variant?, action?, duration? }) from anywhere; it returns an id for toast.dismiss(id). Hovering a toast pauses its auto-dismiss timer.",
+  },
+  "toggle-group": {
+    title: "Toggle Group",
+    exports: "ToggleGroup",
+    propsNote:
+      'type: "single" | "multiple" — single mode glides a backplate between pressed items as a shared element, multiple latches each item independently. items take a value plus an icon and/or label; works controlled via value/onValueChange or uncontrolled via defaultValue. Arrow keys rove, sizes sm | md.',
   },
   tooltip: {
     title: "Tooltip",

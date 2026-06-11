@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   Accordion,
   AccordionItem,
+  Alert,
   AnimatedTabs,
   AnimatedTooltip,
   AnnouncementBar,
@@ -13,6 +14,7 @@ import {
   AvatarGroup,
   Badge,
   BeamGrid,
+  BorderBeam,
   Breadcrumbs,
   Button,
   Card,
@@ -23,53 +25,78 @@ import {
   Carousel,
   Changelog,
   ChatWidget,
+  Checkbox,
   CommandMenu,
   CtaBanner,
+  CursorTrail,
   Dialog,
   Dock,
   DockItem,
+  Drawer,
+  DropdownMenu,
+  ElasticStack,
   Faq,
   FeatureBento,
   FileDropzone,
+  FlipText,
+  Folder,
   Footer,
+  GlitchText,
   GradientText,
   Hero,
+  HoverLink,
   Input,
   Kbd,
   LogoStrip,
   MagneticZone,
   Marquee,
+  MorphText,
   Navbar,
   NumberTicker,
   OtpInput,
+  Pagination,
   Popover,
   Pricing,
   Progress,
+  RadioGroup,
+  RadioItem,
   Rating,
+  RevealList,
   ScrollProgress,
   SegmentedControl,
   Select,
   SelectionToolbar,
+  Separator,
   Sidebar,
   Skeleton,
   Slider,
+  Spinner,
   Spotlight,
   SpotlightCard,
   StatsBand,
   Stepper,
   Switch,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
   TeamGrid,
   Testimonials,
+  Textarea,
   TextReveal,
   TiltCard,
   Timeline,
   Toaster,
+  ToggleGroup,
   Tooltip,
   Topbar,
   Typewriter,
   cn,
   toast,
   type CommandMenuItem,
+  type SortDirection,
 } from "@lumora/ui";
 import {
   BellIcon,
@@ -142,6 +169,23 @@ function ContainFixed({
 
 const sleep = (ms: number) =>
   new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Tiny token-tinted gradient SVG encoded as a data URI, so image-driven
+ * demos (cursor trail, reveal list) work fully offline.
+ */
+function placeholderImage(from: string, to: string): string {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="448" height="320"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${from}"/><stop offset="1" stop-color="${to}"/></linearGradient></defs><rect width="448" height="320" fill="url(#g)"/></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
+/** Lumen golds, dusk violets and quiet surfaces from the token palette. */
+const previewImages = [
+  placeholderImage("#dcc28a", "#17171c"),
+  placeholderImage("#9a8bd0", "#101014"),
+  placeholderImage("#17171c", "#dcc28a"),
+  placeholderImage("#101014", "#9a8bd0"),
+];
 
 /* ── stateful demos ──────────────────────────────────────────── */
 
@@ -453,6 +497,96 @@ function AnnouncementDemo() {
   );
 }
 
+function DrawerDemo() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open drawer
+      </Button>
+      {/* The drawer portals to document.body and glides in from the right. */}
+      <Drawer open={open} onOpenChange={setOpen} title="Quiet settings">
+        <p className="text-sm leading-relaxed text-[var(--lm-fg-muted)]">
+          The panel glides in over a blurred overlay. Drag it back toward its
+          edge — past 30% of its width, or with a flick — and it dismisses.
+          Escape and the overlay work too, and focus returns to the trigger.
+        </p>
+        <div className="mt-5 flex justify-end">
+          <Button variant="accent" size="sm" onClick={() => setOpen(false)}>
+            Done
+          </Button>
+        </div>
+      </Drawer>
+    </>
+  );
+}
+
+function DropdownMenuDemo() {
+  const [pinned, setPinned] = React.useState(true);
+  return (
+    <DropdownMenu
+      trigger="Project actions"
+      items={[
+        { kind: "label", label: "Night shift" },
+        { label: "Rename project", onSelect: () => {} },
+        { label: "Duplicate", onSelect: () => {} },
+        {
+          kind: "checkbox",
+          label: "Pin to sidebar",
+          checked: pinned,
+          onCheckedChange: setPinned,
+        },
+        { kind: "separator" },
+        { label: "Delete project", destructive: true, onSelect: () => {} },
+      ]}
+    />
+  );
+}
+
+const tableRows = [
+  { motion: "Aurora wash", spring: "Drift", uses: 412 },
+  { motion: "Dock magnify", spring: "Snap", uses: 388 },
+  { motion: "Drawer glide", spring: "Glide", uses: 351 },
+  { motion: "Toast settle", spring: "Snap", uses: 274 },
+];
+
+function TableDemo() {
+  const [direction, setDirection] = React.useState<SortDirection>("desc");
+  const rows = [...tableRows].sort((a, b) =>
+    direction === "asc" ? a.uses - b.uses : b.uses - a.uses,
+  );
+  return (
+    <div className="w-full max-w-sm">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Motion</TableHead>
+            <TableHead>Spring</TableHead>
+            <TableHead
+              sortable
+              sortDirection={direction}
+              onSort={setDirection}
+            >
+              Uses
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.motion}>
+              <TableCell>{row.motion}</TableCell>
+              <TableCell className="text-[var(--lm-fg-muted)]">
+                {row.spring}
+              </TableCell>
+              <TableCell>{row.uses}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
+}
+
 /* ── shared demo content ─────────────────────────────────────── */
 
 const tooltipPeople = [
@@ -515,6 +649,18 @@ const demos: Record<string, DemoEntry> = {
           </p>
         </AccordionItem>
       </Accordion>
+    ),
+  },
+  alert: {
+    preview: (
+      <div className="flex w-full max-w-sm flex-col gap-3">
+        <Alert tone="accent" title="Phase three is live">
+          Twenty new components just landed in the gallery.
+        </Alert>
+        <Alert tone="negative" title="Sync interrupted" dismissible>
+          Dismiss me — the row collapses as it fades.
+        </Alert>
+      </div>
     ),
   },
   "animated-tabs": {
@@ -638,6 +784,21 @@ const demos: Record<string, DemoEntry> = {
       </BeamGrid>
     ),
   },
+  "border-beam": {
+    preview: (
+      <BorderBeam className="w-full max-w-xs">
+        <div className="rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)] bg-[var(--lm-surface)] p-6">
+          <h3 className="text-base font-semibold text-[var(--lm-fg)]">
+            Always in transit
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--lm-fg-muted)]">
+            A lumen head with a fading tail laps the border ring once every
+            six seconds — only the ring ever lights up.
+          </p>
+        </div>
+      </BorderBeam>
+    ),
+  },
   breadcrumbs: {
     preview: (
       <Breadcrumbs
@@ -703,8 +864,58 @@ const demos: Record<string, DemoEntry> = {
       </Carousel>
     ),
   },
+  checkbox: {
+    preview: (
+      <div className="flex w-full max-w-xs flex-col gap-4">
+        <Checkbox
+          defaultChecked
+          label="Ambient previews"
+          description="Play hover motion inside gallery tiles."
+        />
+        <Checkbox label="Monthly digest" />
+        <Checkbox
+          indeterminate
+          label="Workspace access"
+          description="3 of 7 members selected."
+        />
+      </div>
+    ),
+  },
+  "cursor-trail": {
+    preview: (
+      <CursorTrail
+        images={previewImages}
+        className="flex h-full min-h-44 w-full items-center justify-center rounded-[var(--lm-radius)] border border-[var(--lm-border)] bg-[var(--lm-bg)]"
+      >
+        <p className="text-sm font-medium text-[var(--lm-fg)]">
+          Sweep your cursor across this surface.
+        </p>
+      </CursorTrail>
+    ),
+  },
   dialog: { preview: <DialogDemo /> },
   dock: { preview: <DockDemo /> },
+  drawer: { preview: <DrawerDemo /> },
+  "dropdown-menu": { preview: <DropdownMenuDemo /> },
+  "elastic-stack": {
+    preview: (
+      <ElasticStack className="h-44 w-56" aria-label="The three springs">
+        {carouselSlides.map((slide) => (
+          <div
+            key={slide.title}
+            className="flex h-full w-full flex-col items-center justify-center rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)] bg-[var(--lm-surface)] p-4 text-center"
+          >
+            <p className="text-base font-semibold text-[var(--lm-fg)]">
+              {slide.title}
+            </p>
+            <p className="mt-1 text-xs text-[var(--lm-fg-muted)]">
+              {slide.copy}
+            </p>
+          </div>
+        ))}
+      </ElasticStack>
+    ),
+  },
   "file-dropzone": {
     preview: (
       <FileDropzone
@@ -714,11 +925,70 @@ const demos: Record<string, DemoEntry> = {
       />
     ),
   },
+  "flip-text": {
+    preview: (
+      <p className="text-xl font-medium text-[var(--lm-fg)]">
+        Built to{" "}
+        <FlipText
+          words={["launch.", "iterate.", "endure."]}
+          className="text-[var(--lm-accent)]"
+        />
+      </p>
+    ),
+  },
+  folder: {
+    preview: (
+      <Folder
+        label="Night shift assets"
+        items={[
+          <span
+            key="a"
+            className="block h-12 w-10 rounded-[var(--lm-radius-sm)] border border-[var(--lm-border)] bg-gradient-to-br from-[var(--lm-accent-soft)] to-[var(--lm-surface-2)]"
+          />,
+          <span
+            key="b"
+            className="block h-12 w-10 rounded-[var(--lm-radius-sm)] border border-[var(--lm-border)] bg-gradient-to-br from-[var(--lm-surface-2)] to-[var(--lm-accent-soft)]"
+          />,
+          <span
+            key="c"
+            className="block h-12 w-10 rounded-[var(--lm-radius-sm)] border border-[var(--lm-border)] bg-[var(--lm-surface-2)]"
+          />,
+        ]}
+      />
+    ),
+  },
+  "glitch-text": {
+    preview: (
+      <div className="flex flex-col items-center gap-3">
+        <p className="text-2xl font-semibold tracking-tight text-[var(--lm-fg)]">
+          <GlitchText>SIGNAL RESTORED</GlitchText>
+        </p>
+        <p className="text-xs text-[var(--lm-fg-faint)]">
+          Hover the words — they tear for 350ms, then settle clean.
+        </p>
+      </div>
+    ),
+  },
   "gradient-text": {
     preview: (
       <p className="text-2xl font-semibold">
         <GradientText>Interfaces that glow</GradientText>
       </p>
+    ),
+  },
+  "hover-link": {
+    preview: (
+      <div className="flex flex-col items-start gap-4 text-sm">
+        <HoverLink href="#" variant="slide">
+          Slide — in from the left, out to the right
+        </HoverLink>
+        <HoverLink href="#" variant="center">
+          Center — blooms from the middle
+        </HoverLink>
+        <HoverLink href="#" variant="draw" arrow>
+          Draw — overshoots, then settles
+        </HoverLink>
+      </div>
     ),
   },
   input: {
@@ -750,6 +1020,17 @@ const demos: Record<string, DemoEntry> = {
     ),
   },
   marquee: { preview: <MarqueeDemo /> },
+  "morph-text": {
+    preview: (
+      <p className="text-xl font-medium text-[var(--lm-fg)]">
+        Designed for{" "}
+        <MorphText
+          words={["clarity", "quiet", "focus"]}
+          className="text-[var(--lm-accent)]"
+        />
+      </p>
+    ),
+  },
   "number-ticker": {
     preview: (
       <div className="flex items-end gap-8">
@@ -769,6 +1050,16 @@ const demos: Record<string, DemoEntry> = {
     ),
   },
   "otp-input": { preview: <OtpDemo /> },
+  pagination: {
+    preview: (
+      <div className="flex flex-col items-center gap-3">
+        <Pagination count={12} defaultPage={4} aria-label="Demo pages" />
+        <p className="text-xs text-[var(--lm-fg-faint)]">
+          The pill glides between numbers; long ranges fold into ellipses.
+        </p>
+      </div>
+    ),
+  },
   popover: {
     preview: (
       <Popover trigger="Share project">
@@ -781,7 +1072,38 @@ const demos: Record<string, DemoEntry> = {
     ),
   },
   progress: { preview: <ProgressDemo /> },
+  "radio-group": {
+    preview: (
+      <RadioGroup
+        defaultValue="drift"
+        aria-label="Pick a spring"
+        className="w-full max-w-xs"
+      >
+        <RadioItem value="snap" description="Fast settle, no wobble.">
+          Snap
+        </RadioItem>
+        <RadioItem value="drift" description="One gentle breath.">
+          Drift
+        </RadioItem>
+        <RadioItem value="glide" description="Long, weighty, deliberate.">
+          Glide
+        </RadioItem>
+      </RadioGroup>
+    ),
+  },
   rating: { preview: <RatingDemo /> },
+  "reveal-list": {
+    preview: (
+      <RevealList
+        className="w-full max-w-sm"
+        items={[
+          { title: "Nocturne", meta: "2026", src: previewImages[0]! },
+          { title: "Halflight", meta: "2025", src: previewImages[1]! },
+          { title: "Ondine", meta: "2024", src: previewImages[2]! },
+        ]}
+      />
+    ),
+  },
   "scroll-progress": { preview: <ScrollProgressDemo /> },
   "segmented-control": {
     preview: (
@@ -809,6 +1131,17 @@ const demos: Record<string, DemoEntry> = {
       </div>
     ),
   },
+  separator: {
+    preview: (
+      <div className="w-full max-w-xs text-sm text-[var(--lm-fg-muted)]">
+        <p>Both ends fade to nothing,</p>
+        <Separator className="my-4" />
+        <p>so the rule never cuts a hard edge.</p>
+        <Separator label="or" className="my-4" />
+        <p>A chip label can sit at the center.</p>
+      </div>
+    ),
+  },
   skeleton: {
     preview: (
       <div className="flex w-full max-w-xs items-start gap-4">
@@ -818,6 +1151,24 @@ const demos: Record<string, DemoEntry> = {
     ),
   },
   slider: { preview: <SliderDemo /> },
+  spinner: {
+    preview: (
+      <div className="flex items-center gap-10">
+        <div className="flex flex-col items-center gap-3">
+          <Spinner variant="orbit" size="lg" label="Loading, orbit style" />
+          <span className="text-xs text-[var(--lm-fg-faint)]">orbit</span>
+        </div>
+        <div className="flex flex-col items-center gap-3">
+          <Spinner variant="pulse" size="lg" label="Loading, pulse style" />
+          <span className="text-xs text-[var(--lm-fg-faint)]">pulse</span>
+        </div>
+        <div className="flex flex-col items-center gap-3">
+          <Spinner variant="bars" size="lg" label="Loading, bars style" />
+          <span className="text-xs text-[var(--lm-fg-faint)]">bars</span>
+        </div>
+      </div>
+    ),
+  },
   spotlight: {
     preview: (
       <Spotlight
@@ -845,6 +1196,17 @@ const demos: Record<string, DemoEntry> = {
   },
   stepper: { preview: <StepperDemo /> },
   switch: { preview: <SwitchDemo /> },
+  table: { preview: <TableDemo /> },
+  textarea: {
+    preview: (
+      <div className="w-full max-w-xs">
+        <Textarea label="Release notes" maxRows={5} />
+        <p className="mt-3 text-xs text-[var(--lm-fg-faint)]">
+          Type a few lines — the field grows with you, capped at five rows.
+        </p>
+      </div>
+    ),
+  },
   "text-reveal": {
     preview: (
       <TextReveal
@@ -893,6 +1255,32 @@ const demos: Record<string, DemoEntry> = {
     ),
   },
   toast: { preview: <ToastDemo /> },
+  "toggle-group": {
+    preview: (
+      <div className="flex flex-col items-center gap-4">
+        <ToggleGroup
+          defaultValue="center"
+          aria-label="Alignment"
+          items={[
+            { value: "left", label: "Left" },
+            { value: "center", label: "Center" },
+            { value: "right", label: "Right" },
+          ]}
+        />
+        <ToggleGroup
+          type="multiple"
+          size="sm"
+          defaultValue={["grid"]}
+          aria-label="Canvas helpers"
+          items={[
+            { value: "grid", label: "Grid" },
+            { value: "rulers", label: "Rulers" },
+            { value: "guides", label: "Guides" },
+          ]}
+        />
+      </div>
+    ),
+  },
   tooltip: {
     preview: (
       <Tooltip content="Drifts in after 300ms, leaning toward its anchor.">
