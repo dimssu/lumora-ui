@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Card, CardBody, CardHeader, CardTitle } from "@lumora/ui";
+import { Badge, Card, CardBody, CardHeader, CardTitle } from "@lumora/ui";
 import {
   SkillDownloadButton,
   SkillInstallTabs,
 } from "../../components/skill-install";
+import { SkillCommands } from "../../components/skill-commands";
 
 export const metadata: Metadata = {
   title: "Agent skill",
@@ -34,18 +35,18 @@ export default function SkillPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
       <header className="max-w-2xl">
-        <p className="text-xs font-medium uppercase tracking-wider text-[var(--lm-fg-faint)]">
+        <Badge variant="accent" size="sm" dot>
           lumora-builder · agent skill
-        </p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--lm-fg)] sm:text-5xl">
+        </Badge>
+        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[var(--lm-fg)] sm:text-5xl">
           Teach your agent Lumora
         </h1>
         <p className="mt-5 text-base leading-relaxed text-[var(--lm-fg-muted)] sm:text-lg">
-          One small download turns a coding agent into a Lumora specialist.
-          The skill carries our composition recipes, the motion language, the
-          token system, and the complete component catalog — so when you ask
-          for a landing page or a dashboard, the agent composes it from the
-          real library instead of improvising.
+          One small download turns a coding agent into a Lumora specialist. The
+          skill carries our composition recipes, the motion language, the token
+          system, and the complete component catalog — so when you ask for a
+          landing page or a dashboard, the agent composes it from the real
+          library instead of improvising.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <SkillDownloadButton />
@@ -55,7 +56,7 @@ export default function SkillPage() {
         </div>
       </header>
 
-      <section aria-labelledby="install-heading" className="mt-20">
+      <section aria-labelledby="install-heading" className="mt-20 scroll-mt-24">
         <h2
           id="install-heading"
           className="text-2xl font-semibold text-[var(--lm-fg)]"
@@ -63,20 +64,42 @@ export default function SkillPage() {
           Install it
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--lm-fg-muted)]">
-          Two ways in, both under a minute.
+          Two ways in, both under a minute — pick where the skill should live.
         </p>
-        <div className="mt-6">
+        <div className="mt-6 rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)] bg-[var(--lm-surface)] p-5 sm:p-6">
           <SkillInstallTabs />
         </div>
       </section>
 
-      <section aria-labelledby="inside-heading" className="mt-20">
+      <section aria-labelledby="commands-heading" className="mt-20 scroll-mt-24">
+        <h2
+          id="commands-heading"
+          className="text-2xl font-semibold text-[var(--lm-fg)]"
+        >
+          Commands &amp; prompts
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--lm-fg-muted)]">
+          Once the skill is loaded you talk to your agent in plain English —{" "}
+          <span className="text-[var(--lm-fg)]">Ask your agent</span> — and it
+          reaches for the right components and the real{" "}
+          <span className="text-[var(--lm-fg)]">CLI commands</span> under the
+          hood to install their source.
+        </p>
+        <div className="mt-6">
+          <SkillCommands />
+        </div>
+      </section>
+
+      <section aria-labelledby="inside-heading" className="mt-20 scroll-mt-24">
         <h2
           id="inside-heading"
           className="text-2xl font-semibold text-[var(--lm-fg)]"
         >
           What&rsquo;s inside
         </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--lm-fg-muted)]">
+          Three markdown files the agent reads on demand. Nothing executes.
+        </p>
         <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
           {contents.map((entry) => (
             <Card key={entry.file} variant="lift" className="h-full">
@@ -96,7 +119,7 @@ export default function SkillPage() {
         </div>
       </section>
 
-      <section aria-labelledby="how-heading" className="mt-20">
+      <section aria-labelledby="how-heading" className="mt-20 scroll-mt-24">
         <h2
           id="how-heading"
           className="text-2xl font-semibold text-[var(--lm-fg)]"
