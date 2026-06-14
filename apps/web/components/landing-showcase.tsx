@@ -82,7 +82,7 @@ export function LandingShowcase() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+    <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
       <div className="mx-auto mb-12 max-w-2xl text-center">
         <h2 className="text-3xl font-semibold tracking-tight text-[var(--lm-fg)] [text-wrap:balance] sm:text-4xl">
           Every tile is the real component, live
@@ -102,7 +102,7 @@ export function LandingShowcase() {
         >
           <SpotlightCard className="h-[200px] w-full border-0 bg-transparent">
             <div className="flex h-full flex-col items-center justify-center gap-3 px-6 text-center">
-              <Badge variant="accent" dot pulse size="sm">
+              <Badge variant="neutral" dot size="sm">
                 Live surface
               </Badge>
               <p className="max-w-sm text-base font-medium text-[var(--lm-fg)] sm:text-lg">
@@ -128,7 +128,7 @@ export function LandingShowcase() {
               Springs that{" "}
               <FlipText
                 words={["snap.", "drift.", "glide."]}
-                className="font-medium text-[var(--lm-accent)]"
+                className="font-medium text-[var(--lm-fg)]"
               />
             </p>
           </div>
