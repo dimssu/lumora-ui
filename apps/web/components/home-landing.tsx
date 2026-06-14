@@ -4,19 +4,21 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import {
   BeamGrid,
+  BorderBeam,
   CtaBanner,
   Dock,
   DockItem,
   Faq,
   FeatureBento,
   Hero,
+  LogoStrip,
   Marquee,
-  Pricing,
+  StatsBand,
   Testimonials,
   Typewriter,
   type FaqItem,
   type FeatureItem,
-  type PricingTier,
+  type StatItem,
   type Testimonial,
 } from "@lumora/ui";
 import {
@@ -34,6 +36,10 @@ import {
 } from "@lumora/icons";
 import { componentItems } from "../lib/registry";
 import { metaFor } from "../lib/content";
+import { CopyButton } from "./copy-button";
+import { LandingShowcase } from "./landing-showcase";
+import { LandingInstall } from "./landing-install";
+import { LandingAi } from "./landing-ai";
 
 const features: FeatureItem[] = [
   {
@@ -68,48 +74,11 @@ const features: FeatureItem[] = [
   },
 ];
 
-const tiers: PricingTier[] = [
-  {
-    name: "Open",
-    description: "The core library, MIT-licensed forever.",
-    monthly: 0,
-    yearly: 0,
-    features: [
-      "All 60 core components",
-      "60 animated icons",
-      "Dark & light token sets",
-      "Community support",
-    ],
-    ctaLabel: "Install free",
-  },
-  {
-    name: "Pro",
-    description: "Every block, kept current as the library grows.",
-    monthly: 21,
-    yearly: 17,
-    features: [
-      "Everything in Open",
-      "All landing blocks",
-      "AI surface components",
-      "Token kit for design tools",
-      "New blocks every month",
-    ],
-    ctaLabel: "Go Pro",
-    highlighted: true,
-  },
-  {
-    name: "Studio",
-    description: "For teams that want us in the room.",
-    monthly: 68,
-    yearly: 55,
-    features: [
-      "Everything in Pro",
-      "Private component requests",
-      "Quarterly motion review",
-      "Dedicated support channel",
-    ],
-    ctaLabel: "Talk to us",
-  },
+const stats: StatItem[] = [
+  { value: 60, label: "Live components" },
+  { value: 60, label: "Animated icons" },
+  { value: 15, label: "Composable blocks" },
+  { value: 0, label: "Runtime dependencies" },
 ];
 
 const quotes: Testimonial[] = [
@@ -151,15 +120,15 @@ const quotes: Testimonial[] = [
   },
   {
     quote:
-      "The pricing block's billing toggle alone would have taken us a sprint. It was a prop.",
-    name: "Camille Roux",
-    role: "Engineering manager, Verglas",
+      "Every interaction settles exactly once. I didn't know how much the wobble was costing us until it was gone.",
+    name: "Anders Lien",
+    role: "Staff engineer, Pinefold",
   },
   {
     quote:
-      "Everything settles exactly once. I didn't know how much the wobble was costing us until it was gone.",
-    name: "Anders Lien",
-    role: "Staff engineer, Pinefold",
+      "The bento and stats blocks took a landing page from a sprint to an afternoon. The defaults are the product.",
+    name: "Camille Roux",
+    role: "Engineering manager, Verglas",
   },
 ];
 
@@ -191,6 +160,19 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const installCommand = "npx lumora-ui@latest add button";
+
+const wordmarks = [
+  { name: "Fernhollow", className: "font-serif text-xl italic" },
+  { name: "VANTREMONT", className: "text-sm font-bold tracking-[0.3em]" },
+  { name: "kilnware", className: "font-mono text-base tracking-tight" },
+  { name: "Octave & Pine", className: "text-xl font-light tracking-wide" },
+  { name: "BLUEWICK", className: "text-base font-extrabold tracking-widest" },
+  { name: "Statice", className: "text-xl font-semibold tracking-tighter" },
+  { name: "MERIDIAN FOUR", className: "text-xs font-medium tracking-[0.35em]" },
+  { name: "Lampyric", className: "font-serif text-xl font-bold" },
+];
+
 export function HomeLanding() {
   const router = useRouter();
 
@@ -208,45 +190,67 @@ export function HomeLanding() {
           label: "Read the docs",
           onClick: () => router.push("/docs"),
         }}
-        trustedBy="Trusted by teams who sweat the last 2%"
+        avatars={[]}
         media={
-          <BeamGrid
-            density={48}
-            beamCount={3}
-            className="rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)] bg-[var(--lm-surface)]"
-          >
-            <div className="flex flex-col items-center gap-10 px-6 py-14 sm:py-16">
-              <p className="text-xl font-medium text-[var(--lm-fg)] sm:text-2xl">
-                Springs that{" "}
-                <Typewriter
-                  words={[
-                    "snap into place.",
-                    "drift in once.",
-                    "glide between layouts.",
-                  ]}
-                  className="text-[var(--lm-fg-muted)]"
-                />
-              </p>
-              <Dock aria-label="Sample dock — every item is live">
-                <DockItem label="Search">
-                  <SearchIcon />
-                </DockItem>
-                <DockItem label="Inbox">
-                  <MailIcon />
-                </DockItem>
-                <DockItem label="Favorites">
-                  <StarIcon />
-                </DockItem>
-                <DockItem label="Alerts">
-                  <BellIcon />
-                </DockItem>
-                <DockItem label="Settings">
-                  <SettingsIcon />
-                </DockItem>
-              </Dock>
+          <div className="flex flex-col items-center gap-10">
+            <div className="flex items-center gap-2 rounded-[var(--lm-radius-full)] border border-[var(--lm-border)] bg-[var(--lm-surface)] py-1.5 pl-4 pr-1.5">
+              <span
+                aria-hidden
+                className="select-none text-[var(--lm-fg-faint)]"
+              >
+                $
+              </span>
+              <code className="font-mono text-sm text-[var(--lm-fg)]">
+                {installCommand}
+              </code>
+              <CopyButton text={installCommand} label="Copy install command" />
             </div>
-          </BeamGrid>
+
+            <BorderBeam color="lumen" className="w-full">
+              <BeamGrid
+                density={48}
+                beamCount={3}
+                className="rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)] bg-[var(--lm-surface)]"
+              >
+                <div className="flex flex-col items-center gap-10 px-6 py-14 sm:py-16">
+                  <p className="text-xl font-medium text-[var(--lm-fg)] sm:text-2xl">
+                    Springs that{" "}
+                    <Typewriter
+                      words={[
+                        "snap into place.",
+                        "drift in once.",
+                        "glide between layouts.",
+                      ]}
+                      className="text-[var(--lm-fg-muted)]"
+                    />
+                  </p>
+                  <Dock aria-label="Sample dock — every item is live">
+                    <DockItem label="Search">
+                      <SearchIcon />
+                    </DockItem>
+                    <DockItem label="Inbox">
+                      <MailIcon />
+                    </DockItem>
+                    <DockItem label="Favorites">
+                      <StarIcon />
+                    </DockItem>
+                    <DockItem label="Alerts">
+                      <BellIcon />
+                    </DockItem>
+                    <DockItem label="Settings">
+                      <SettingsIcon />
+                    </DockItem>
+                  </Dock>
+                </div>
+              </BeamGrid>
+            </BorderBeam>
+          </div>
         }
+      />
+
+      <LogoStrip
+        label="Trusted by teams who sweat the last 2%"
+        logos={wordmarks}
       />
 
       <section
@@ -269,18 +273,19 @@ export function HomeLanding() {
         </Marquee>
       </section>
 
+      <LandingShowcase />
+
       <FeatureBento
         heading="Built for the unglamorous details"
         subheading="The parts of great interfaces nobody screenshots — handled once, handled well."
         items={features}
       />
 
-      <Pricing
-        heading="Simple, honest pricing"
-        subheading="The core library is free and MIT-licensed. Paid tiers add blocks and people, never license restrictions."
-        tiers={tiers}
-        onTierSelect={() => router.push("/docs")}
-      />
+      <LandingInstall />
+
+      <StatsBand stats={stats} />
+
+      <LandingAi />
 
       <Testimonials
         heading="Loved in the quiet hours"
