@@ -8,6 +8,7 @@
 @theme inline {
   --font-sans: var(--font-grotesk);
   --font-display: var(--font-fraunces);
+  --font-mono: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
 body {

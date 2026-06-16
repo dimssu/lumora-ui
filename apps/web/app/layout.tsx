@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Space_Grotesk } from "next/font/google";
+import { Fraunces, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { SiteChrome } from "../components/site-chrome";
 import "./globals.css";
 
@@ -14,6 +14,12 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
   display: "swap",
   axes: ["opsz"],
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -35,7 +41,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${grotesk.variable} ${fraunces.variable}`}
+      className={`${grotesk.variable} ${fraunces.variable} ${mono.variable}`}
     >
       <body className="min-h-screen bg-[var(--lm-bg)] text-[var(--lm-fg)] antialiased">
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

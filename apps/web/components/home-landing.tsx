@@ -2,18 +2,11 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import {
-  BeamGrid,
-  BorderBeam,
-  CtaBanner,
-  Hero,
-  Testimonials,
-  Typewriter,
-  type Testimonial,
-} from "@lumora/ui";
-import { CopyButton } from "./copy-button";
-import { LandingShowcase } from "./landing-showcase";
-import { LandingWhy } from "./landing-why";
+import { CtaBanner, Testimonials, type Testimonial } from "@lumora/ui";
+import { LandingHero } from "./landing-hero";
+import { LandingTech } from "./landing-tech";
+import { LandingLibraryMap } from "./landing-library-map";
+import { LandingBento } from "./landing-bento";
 import { LandingInstall } from "./landing-install";
 
 const quotes: Testimonial[] = [
@@ -43,69 +36,20 @@ const quotes: Testimonial[] = [
   },
 ];
 
-const installCommand = "npx lumora-ui@latest add button";
-
 export function HomeLanding() {
   const router = useRouter();
+  const browse = React.useCallback(() => router.push("/components"), [router]);
+  const docs = React.useCallback(() => router.push("/docs"), [router]);
 
   return (
     <>
-      <Hero
-        eyebrow="Lumora UI 0.1 — press ⌘K to search"
-        headline="Motion-first components for products that feel finished"
-        subcopy="Quiet surfaces, one champagne accent, and three springs that settle exactly once. Install the source, keep the code, ship the glow."
-        primaryCta={{
-          label: "Browse components",
-          onClick: () => router.push("/components"),
-        }}
-        secondaryCta={{
-          label: "Read the docs",
-          onClick: () => router.push("/docs"),
-        }}
-        avatars={[]}
-        media={
-          <div className="flex flex-col items-center gap-10">
-            <div className="flex items-center gap-2 rounded-[var(--lm-radius-full)] border border-[var(--lm-border)] bg-[var(--lm-surface)] py-1.5 pl-4 pr-1.5">
-              <span
-                aria-hidden
-                className="select-none text-[var(--lm-fg-faint)]"
-              >
-                $
-              </span>
-              <code className="font-mono text-sm text-[var(--lm-fg)]">
-                {installCommand}
-              </code>
-              <CopyButton text={installCommand} label="Copy install command" />
-            </div>
+      <LandingHero onBrowse={browse} onDocs={docs} />
 
-            <BorderBeam color="lumen" className="w-full">
-              <BeamGrid
-                density={48}
-                beamCount={3}
-                className="rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)] bg-[var(--lm-surface)]"
-              >
-                <div className="flex flex-col items-center gap-10 px-6 py-14 sm:py-16">
-                  <p className="text-xl font-medium text-[var(--lm-fg)] sm:text-2xl">
-                    Springs that{" "}
-                    <Typewriter
-                      words={[
-                        "snap into place.",
-                        "drift in once.",
-                        "glide between layouts.",
-                      ]}
-                      className="text-[var(--lm-fg-muted)]"
-                    />
-                  </p>
-                </div>
-              </BeamGrid>
-            </BorderBeam>
-          </div>
-        }
-      />
+      <LandingTech />
 
-      <LandingShowcase />
+      <LandingLibraryMap onExplore={browse} />
 
-      <LandingWhy />
+      <LandingBento onBrowse={browse} />
 
       <LandingInstall />
 
@@ -119,7 +63,7 @@ export function HomeLanding() {
         headline="Turn the lights on"
         subcopy="Install the library, open the gallery, and ship a page that glows tonight."
         ctaLabel="Browse components"
-        onCtaClick={() => router.push("/components")}
+        onCtaClick={browse}
       />
     </>
   );
