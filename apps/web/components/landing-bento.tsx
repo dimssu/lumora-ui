@@ -193,67 +193,44 @@ function CardInteractive() {
   );
 }
 
-/* ── Card 2 visual — isometric framework tiles (real, recognizable logos) ─ */
-
-interface IsoTile {
-  label: string;
-  /** Diamond layout offsets, in px, from cluster center. */
-  x: number;
-  y: number;
-  /** Brand color for the glyph — the one place third-party marks appear. */
-  color: string;
-  glyph: React.ReactNode;
-}
+/* ── Card 2 visual — flat, labeled framework chips (app-icon treatment) ── */
 
 function CardFrameworks({ reduceMotion }: { reduceMotion: boolean | null }) {
-  // Clean 1-2-2 diamond, no overlap; each tile carries its real brand mark.
-  const tiles: IsoTile[] = [
-    { label: "Next.js", x: 0, y: -74, color: "var(--lm-fg)", glyph: <GlyphNext /> },
-    { label: "React", x: -96, y: -6, color: "#61DAFB", glyph: <GlyphReact /> },
-    { label: "TypeScript", x: 96, y: -6, color: "#4d8fd6", glyph: <GlyphTS /> },
-    { label: "Tailwind", x: -52, y: 70, color: "#38BDF8", glyph: <GlyphTailwind /> },
-    { label: "Motion", x: 52, y: 70, color: "var(--lm-fg)", glyph: <GlyphMotion /> },
+  const items = [
+    { label: "React", color: "#61DAFB", glyph: <GlyphReact /> },
+    { label: "Next.js", color: "var(--lm-fg)", glyph: <GlyphNext /> },
+    { label: "TypeScript", color: "#4d9be6", glyph: <GlyphTS /> },
+    { label: "Tailwind", color: "#38BDF8", glyph: <GlyphTailwind /> },
+    { label: "Motion", color: "var(--lm-fg)", glyph: <GlyphMotion /> },
   ];
 
   return (
-    <div
-      className="relative grid h-[260px] w-full place-items-center"
-      aria-hidden
+    <motion.ul
+      className="flex w-full flex-wrap items-start justify-center gap-x-6 gap-y-6 py-4 sm:gap-x-9"
+      initial={reduceMotion ? false : "hidden"}
+      whileInView="show"
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ staggerChildren: 0.07, delayChildren: 0.05 }}
     >
-      <div className="relative h-0 w-0 [transform:rotateX(54deg)_rotateZ(45deg)] [transform-style:preserve-3d]">
-        {tiles.map((tile, i) => (
-          <motion.div
-            key={tile.label}
-            title={tile.label}
-            className="absolute grid h-16 w-16 place-items-center rounded-[var(--lm-radius)] border border-[var(--lm-border-strong)] bg-[var(--lm-surface-2)] shadow-[var(--lm-shadow)] ring-1 ring-inset ring-white/[0.04]"
-            style={{
-              left: tile.x,
-              top: tile.y,
-              marginLeft: -32,
-              marginTop: -32,
-              color: tile.color,
-            }}
-            animate={reduceMotion ? undefined : { translateZ: [0, 14, 0] }}
-            transition={
-              reduceMotion
-                ? undefined
-                : {
-                    duration: 5,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    ease: "easeInOut",
-                    delay: i * 0.45,
-                  }
-            }
+      {items.map((it) => (
+        <motion.li
+          key={it.label}
+          className="group flex w-16 flex-col items-center gap-2.5"
+          variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
+          transition={springs.drift}
+        >
+          <span
+            className="grid h-14 w-14 place-items-center rounded-[15px] border border-[var(--lm-border-strong)] bg-gradient-to-b from-[var(--lm-surface-2)] to-[var(--lm-surface)] shadow-[var(--lm-shadow)] ring-1 ring-inset ring-white/[0.06] transition-transform duration-300 ease-out group-hover:-translate-y-1"
+            style={{ color: it.color }}
           >
-            {/* Counter-rotate the glyph so it reads flat on the iso tile. */}
-            <span className="[transform:rotateZ(-45deg)_rotateX(-54deg)]">
-              {tile.glyph}
-            </span>
-          </motion.div>
-        ))}
-      </div>
-    </div>
+            {it.glyph}
+          </span>
+          <span className="font-mono text-[11px] tracking-tight text-[var(--lm-fg-muted)]">
+            {it.label}
+          </span>
+        </motion.li>
+      ))}
+    </motion.ul>
   );
 }
 
@@ -452,54 +429,55 @@ function GlyphReact() {
   );
 }
 
-/** Next.js: the circle mark with the diagonal "N". */
+/** Next.js: the circle mark with the clean diagonal "N". */
 function GlyphNext() {
   return (
     <svg width={26} height={26} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx={12} cy={12} r={10.5} stroke="currentColor" strokeWidth={1.1} opacity={0.45} />
+      <circle cx={12} cy={12} r={10} stroke="currentColor" strokeWidth={1.2} opacity={0.5} />
       <path
-        d="M8.4 8v8M8.4 8l8 9.2"
+        d="M8.7 16.4V7.8l6.9 8.8"
         stroke="currentColor"
         strokeWidth={1.7}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M15.6 8v5.4" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+      <path d="M15.3 7.8v5.1" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
     </svg>
   );
 }
 
 function GlyphTS() {
   return (
-    <span className="font-mono text-[13px] font-bold leading-none tracking-tight text-current">
+    <span className="font-mono text-sm font-bold leading-none tracking-tight text-current">
       TS
     </span>
   );
 }
 
-/** Tailwind: the twin overlapping waves. */
+/** Tailwind CSS: the official twin-wave mark. */
 function GlyphTailwind() {
   return (
-    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <g stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" fill="none">
-        <path d="M4 11c1.3-2.7 2.9-4 4.9-4 3 0 3.3 3 5.6 3 1.5 0 2.5-.8 3.4-2.4-1.3 2.7-2.9 4-4.9 4-3 0-3.3-3-5.6-3-1.5 0-2.5.8-3.4 2.4Z" />
-        <path d="M4 16c1.3-2.7 2.9-4 4.9-4 3 0 3.3 3 5.6 3 1.5 0 2.5-.8 3.4-2.4-1.3 2.7-2.9 4-4.9 4-3 0-3.3-3-5.6-3-1.5 0-2.5.8-3.4 2.4Z" />
-      </g>
+    <svg width={26} height={16} viewBox="0 0 54 33" fill="currentColor" aria-hidden>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"
+      />
     </svg>
   );
 }
 
-/** Motion: an ease curve arcing up to a leading dot. */
+/** Motion: a fluid ease curve sweeping up to a leading dot. */
 function GlyphMotion() {
   return (
     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" aria-hidden>
       <path
-        d="M3.5 17.5C7 17.5 9 6.5 13.5 6.5c1.8 0 2.8 1.4 4 1.4"
+        d="M3.5 17.5C8 17.5 9.5 6.5 14 6.5"
         stroke="currentColor"
-        strokeWidth={1.7}
+        strokeWidth={1.9}
         strokeLinecap="round"
       />
-      <circle cx={18.5} cy={8} r={2.1} fill="currentColor" />
+      <circle cx={17.6} cy={7.2} r={2.4} fill="currentColor" />
     </svg>
   );
 }
