@@ -102,9 +102,13 @@ assume a provider.
 
 ## Icons (`packages/icons/src/icons/`)
 
-60 animated icons on the 24px grid, exported from `@lumora/icons` as
-`<PascalName>Icon` (e.g. `ArrowRightIcon`, `GitBranchIcon`). All share the
-same props via `IconBase`: `size` (20), `strokeWidth` (1.75), and
+100+ animated icons on the 24px grid, exported from `@lumora/icons` as
+`<PascalName>Icon` (e.g. `ArrowRightIcon`, `GitBranchIcon`). This includes a
+brand-logo set — social/company marks (`GithubIcon`, `XIcon`, `LinkedinIcon`,
+`DiscordIcon`, `FigmaIcon`, `VercelIcon`, `NotionIcon`, …) and dev/tech marks
+(`ReactIcon`, `NextjsIcon`, `TypescriptIcon`, `TailwindIcon`, `NodejsIcon`,
+`NpmIcon`, `GitIcon`, `PythonIcon`, …) — all monochrome via `currentColor`.
+All share the same props via `IconBase`: `size` (20), `strokeWidth` (1.75), and
 `animate: "hover" | "mount" | "loop" | "none"` (hover). Icons are
 decorative by default; naming one via `aria-label` gives it `role="img"`.
 Install standalone copies with `npx lumora-ui@latest add icon/<name>`.
