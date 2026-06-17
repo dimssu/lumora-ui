@@ -17,7 +17,7 @@ export const SaveIcon = React.forwardRef<SVGSVGElement, IconProps>(
         style={{ originX: 0.5, originY: 0 }}
         variants={{
           idle: { scaleY: 1, transition: springs.snap },
-          active: { scaleY: [1, 0.45, 1], transition: springs.drift },
+          active: { scaleY: 0.45, transition: springs.drift },
         }}
       />
       <path d="M7 19.5v-5.25a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1V19.5" />

@@ -11,7 +11,7 @@ export const GitIcon = React.forwardRef<SVGSVGElement, IconProps>(
       <motion.g
         variants={{
           idle: { scale: 1, transition: springs.snap },
-          active: { scale: [1, 1.08, 1], transition: springs.snap },
+          active: { scale: 1.08, transition: springs.snap },
         }}
         style={{ transformOrigin: "12px 12px" }}
       >

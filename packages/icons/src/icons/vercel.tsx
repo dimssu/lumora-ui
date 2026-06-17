@@ -14,7 +14,7 @@ export const VercelIcon = React.forwardRef<SVGSVGElement, IconProps>(
         d="M12 3 22.5 21H1.5L12 3Z"
         variants={{
           idle: { scale: 1, transition: springs.snap },
-          active: { scale: [1, 1.08, 1], transition: springs.snap },
+          active: { scale: 1.08, transition: springs.snap },
         }}
       />
     </IconBase>

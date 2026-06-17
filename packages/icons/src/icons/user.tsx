@@ -25,7 +25,7 @@ export const UserIcon = React.forwardRef<SVGSVGElement, IconProps>(
         style={{ originX: 0.5, originY: 1 }}
         variants={{
           idle: { scaleY: 1, transition: springs.snap },
-          active: { scaleY: [1, 1.12, 1], transition: springs.drift },
+          active: { scaleY: 1.12, transition: springs.drift },
         }}
       />
     </IconBase>

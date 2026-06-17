@@ -16,7 +16,7 @@ export const NpmIcon = React.forwardRef<SVGSVGElement, IconProps>(
         d="M2 6h20v11H12v2H7v-2H2V6Zm2 2v7h3v-5h2v5h2V8H4Zm9 0v7h2v-5h1.5v5h1V10H18v5h2V8h-7Z"
         variants={{
           idle: { scale: 1, transition: springs.snap },
-          active: { scale: [1, 1.08, 1], transition: springs.snap },
+          active: { scale: 1.08, transition: springs.snap },
         }}
       />
     </IconBase>

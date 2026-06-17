@@ -16,7 +16,7 @@ export const PaperclipIcon = React.forwardRef<SVGSVGElement, IconProps>(
         style={{ originX: "16px", originY: "5.5px" }}
         variants={{
           idle: { rotate: 0, transition: springs.snap },
-          active: { rotate: [0, -10, 0], transition: springs.drift },
+          active: { rotate: -10, transition: springs.drift },
         }}
       />
     </IconBase>
