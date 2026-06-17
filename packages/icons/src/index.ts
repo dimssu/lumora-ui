@@ -89,3 +89,57 @@ export { TerminalIcon } from "./icons/terminal";
 export { CodeIcon } from "./icons/code";
 export { GitBranchIcon } from "./icons/git-branch";
 export { CloudIcon } from "./icons/cloud";
+
+// Actions & UI
+export { EditIcon } from "./icons/edit";
+export { SaveIcon } from "./icons/save";
+export { ShareIcon } from "./icons/share";
+export { ExternalLinkIcon } from "./icons/external-link";
+export { EyeIcon } from "./icons/eye";
+export { EyeOffIcon } from "./icons/eye-off";
+export { MoreHorizontalIcon } from "./icons/more-horizontal";
+export { GridIcon } from "./icons/grid";
+export { ListIcon } from "./icons/list";
+export { SlidersIcon } from "./icons/sliders";
+export { ImageIcon } from "./icons/image";
+export { VideoIcon } from "./icons/video";
+export { PaperclipIcon } from "./icons/paperclip";
+export { FlagIcon } from "./icons/flag";
+
+// People & feedback
+export { UserIcon } from "./icons/user";
+export { UsersIcon } from "./icons/users";
+export { LogOutIcon } from "./icons/log-out";
+export { InfoIcon } from "./icons/info";
+export { AlertTriangleIcon } from "./icons/alert-triangle";
+export { HelpCircleIcon } from "./icons/help-circle";
+export { ThumbsUpIcon } from "./icons/thumbs-up";
+export { SmileIcon } from "./icons/smile";
+
+// Brands — social & companies
+export { GithubIcon } from "./icons/github";
+export { XIcon } from "./icons/x";
+export { LinkedinIcon } from "./icons/linkedin";
+export { DiscordIcon } from "./icons/discord";
+export { YoutubeIcon } from "./icons/youtube";
+export { InstagramIcon } from "./icons/instagram";
+export { FacebookIcon } from "./icons/facebook";
+export { SlackIcon } from "./icons/slack";
+export { FigmaIcon } from "./icons/figma";
+export { DribbbleIcon } from "./icons/dribbble";
+export { TwitchIcon } from "./icons/twitch";
+export { GoogleIcon } from "./icons/google";
+export { AppleIcon } from "./icons/apple";
+export { VercelIcon } from "./icons/vercel";
+export { NotionIcon } from "./icons/notion";
+
+// Brands — dev & tech
+export { ReactIcon } from "./icons/react";
+export { NextjsIcon } from "./icons/nextjs";
+export { TypescriptIcon } from "./icons/typescript";
+export { JavascriptIcon } from "./icons/javascript";
+export { TailwindIcon } from "./icons/tailwind";
+export { NodejsIcon } from "./icons/nodejs";
+export { NpmIcon } from "./icons/npm";
+export { GitIcon } from "./icons/git";
+export { PythonIcon } from "./icons/python";

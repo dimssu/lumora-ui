@@ -1125,6 +1125,32 @@
       ]
     },
     {
+      "name": "alert-triangle",
+      "category": "icon",
+      "path": "packages/icons/src/icons/alert-triangle.tsx",
+      "description": "Alert triangle.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "apple",
+      "category": "icon",
+      "path": "packages/icons/src/icons/apple.tsx",
+      "description": "Apple — the bitten-apple mark with leaf.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "archive",
       "category": "icon",
       "path": "packages/icons/src/icons/archive.tsx",
@@ -1398,10 +1424,114 @@
       ]
     },
     {
+      "name": "discord",
+      "category": "icon",
+      "path": "packages/icons/src/icons/discord.tsx",
+      "description": "Discord — the rounded game-controller / face mark.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "download",
       "category": "icon",
       "path": "packages/icons/src/icons/download.tsx",
       "description": "Download.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "dribbble",
+      "category": "icon",
+      "path": "packages/icons/src/icons/dribbble.tsx",
+      "description": "Dribbble — the basketball-line ball mark.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "edit",
+      "category": "icon",
+      "path": "packages/icons/src/icons/edit.tsx",
+      "description": "Edit.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "external-link",
+      "category": "icon",
+      "path": "packages/icons/src/icons/external-link.tsx",
+      "description": "External link.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "eye",
+      "category": "icon",
+      "path": "packages/icons/src/icons/eye.tsx",
+      "description": "Eye.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "eye-off",
+      "category": "icon",
+      "path": "packages/icons/src/icons/eye-off.tsx",
+      "description": "Eye off.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "facebook",
+      "category": "icon",
+      "path": "packages/icons/src/icons/facebook.tsx",
+      "description": "Facebook — the lowercase \"f\" inside the rounded badge.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "figma",
+      "category": "icon",
+      "path": "packages/icons/src/icons/figma.tsx",
+      "description": "Figma — the five-circle/half-circle stacked mark.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1428,6 +1558,19 @@
       "category": "icon",
       "path": "packages/icons/src/icons/filter.tsx",
       "description": "Filter.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "flag",
+      "category": "icon",
+      "path": "packages/icons/src/icons/flag.tsx",
+      "description": "Flag.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1476,10 +1619,36 @@
       ]
     },
     {
+      "name": "git",
+      "category": "icon",
+      "path": "packages/icons/src/icons/git.tsx",
+      "description": "Git — the rotated-square logo with the three-node branch.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "git-branch",
       "category": "icon",
       "path": "packages/icons/src/icons/git-branch.tsx",
       "description": "Git branch.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "github",
+      "category": "icon",
+      "path": "packages/icons/src/icons/github.tsx",
+      "description": "GitHub — the Octocat mark.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1502,10 +1671,49 @@
       ]
     },
     {
+      "name": "google",
+      "category": "icon",
+      "path": "packages/icons/src/icons/google.tsx",
+      "description": "Google — the \"G\" mark (monochrome; the brand's four colors theme away).",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "grid",
+      "category": "icon",
+      "path": "packages/icons/src/icons/grid.tsx",
+      "description": "Grid.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "heart",
       "category": "icon",
       "path": "packages/icons/src/icons/heart.tsx",
       "description": "Heart.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "help-circle",
+      "category": "icon",
+      "path": "packages/icons/src/icons/help-circle.tsx",
+      "description": "Help circle.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1541,10 +1749,62 @@
       ]
     },
     {
+      "name": "image",
+      "category": "icon",
+      "path": "packages/icons/src/icons/image.tsx",
+      "description": "Image.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "inbox",
       "category": "icon",
       "path": "packages/icons/src/icons/inbox.tsx",
       "description": "Inbox.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "info",
+      "category": "icon",
+      "path": "packages/icons/src/icons/info.tsx",
+      "description": "Info.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "instagram",
+      "category": "icon",
+      "path": "packages/icons/src/icons/instagram.tsx",
+      "description": "Instagram — rounded-square camera with lens and corner dot.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "javascript",
+      "category": "icon",
+      "path": "packages/icons/src/icons/javascript.tsx",
+      "description": "JavaScript — \"JS\" knocked out of a square.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1567,10 +1827,49 @@
       ]
     },
     {
+      "name": "linkedin",
+      "category": "icon",
+      "path": "packages/icons/src/icons/linkedin.tsx",
+      "description": "LinkedIn — rounded square with the \"in\" wordmark.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "list",
+      "category": "icon",
+      "path": "packages/icons/src/icons/list.tsx",
+      "description": "List.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "lock",
       "category": "icon",
       "path": "packages/icons/src/icons/lock.tsx",
       "description": "Lock.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "log-out",
+      "category": "icon",
+      "path": "packages/icons/src/icons/log-out.tsx",
+      "description": "Log out.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1658,6 +1957,84 @@
       ]
     },
     {
+      "name": "more-horizontal",
+      "category": "icon",
+      "path": "packages/icons/src/icons/more-horizontal.tsx",
+      "description": "More.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "nextjs",
+      "category": "icon",
+      "path": "packages/icons/src/icons/nextjs.tsx",
+      "description": "Next.js — the circle with the diagonal \"N\" stroke.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "nodejs",
+      "category": "icon",
+      "path": "packages/icons/src/icons/nodejs.tsx",
+      "description": "Node.js — the hexagon with the cut \"N\".",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "notion",
+      "category": "icon",
+      "path": "packages/icons/src/icons/notion.tsx",
+      "description": "Notion — the \"N\" page mark inside its rounded frame.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "npm",
+      "category": "icon",
+      "path": "packages/icons/src/icons/npm.tsx",
+      "description": "npm — the square with the \"npm\" knockout.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "paperclip",
+      "category": "icon",
+      "path": "packages/icons/src/icons/paperclip.tsx",
+      "description": "Paperclip.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "phone",
       "category": "icon",
       "path": "packages/icons/src/icons/phone.tsx",
@@ -1697,10 +2074,49 @@
       ]
     },
     {
+      "name": "python",
+      "category": "icon",
+      "path": "packages/icons/src/icons/python.tsx",
+      "description": "Python — the two interlocking snakes mark.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "react",
+      "category": "icon",
+      "path": "packages/icons/src/icons/react.tsx",
+      "description": "React — the atom: a nucleus dot orbited by three ellipses.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "refresh",
       "category": "icon",
       "path": "packages/icons/src/icons/refresh.tsx",
       "description": "Refresh.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "save",
+      "category": "icon",
+      "path": "packages/icons/src/icons/save.tsx",
+      "description": "Save.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1749,10 +2165,62 @@
       ]
     },
     {
+      "name": "share",
+      "category": "icon",
+      "path": "packages/icons/src/icons/share.tsx",
+      "description": "Share.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "shield",
       "category": "icon",
       "path": "packages/icons/src/icons/shield.tsx",
       "description": "Shield.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "slack",
+      "category": "icon",
+      "path": "packages/icons/src/icons/slack.tsx",
+      "description": "Slack — the four interlocking rounded bars (hashtag pinwheel).",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "sliders",
+      "category": "icon",
+      "path": "packages/icons/src/icons/sliders.tsx",
+      "description": "Sliders.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "smile",
+      "category": "icon",
+      "path": "packages/icons/src/icons/smile.tsx",
+      "description": "Smile.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1814,10 +2282,36 @@
       ]
     },
     {
+      "name": "tailwind",
+      "category": "icon",
+      "path": "packages/icons/src/icons/tailwind.tsx",
+      "description": "Tailwind CSS — the twin overlapping waves.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
       "name": "terminal",
       "category": "icon",
       "path": "packages/icons/src/icons/terminal.tsx",
       "description": "Terminal.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "thumbs-up",
+      "category": "icon",
+      "path": "packages/icons/src/icons/thumbs-up.tsx",
+      "description": "Thumbs up.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1844,6 +2338,84 @@
       "category": "icon",
       "path": "packages/icons/src/icons/trash.tsx",
       "description": "Trash.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "twitch",
+      "category": "icon",
+      "path": "packages/icons/src/icons/twitch.tsx",
+      "description": "Twitch — the angled-corner chat glyph with two viewer bars.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "typescript",
+      "category": "icon",
+      "path": "packages/icons/src/icons/typescript.tsx",
+      "description": "TypeScript — \"TS\" knocked out of a rounded square.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "user",
+      "category": "icon",
+      "path": "packages/icons/src/icons/user.tsx",
+      "description": "User.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "users",
+      "category": "icon",
+      "path": "packages/icons/src/icons/users.tsx",
+      "description": "Users.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "vercel",
+      "category": "icon",
+      "path": "packages/icons/src/icons/vercel.tsx",
+      "description": "Vercel — the upward equilateral triangle.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "video",
+      "category": "icon",
+      "path": "packages/icons/src/icons/video.tsx",
+      "description": "Video.",
       "internalDeps": [
         "lib/icon"
       ],
@@ -1883,6 +2455,32 @@
       "category": "icon",
       "path": "packages/icons/src/icons/wifi.tsx",
       "description": "Wifi.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "x",
+      "category": "icon",
+      "path": "packages/icons/src/icons/x.tsx",
+      "description": "X (formerly Twitter) — the crossed-stroke mark.",
+      "internalDeps": [
+        "lib/icon"
+      ],
+      "npmDeps": [
+        "motion",
+        "react"
+      ]
+    },
+    {
+      "name": "youtube",
+      "category": "icon",
+      "path": "packages/icons/src/icons/youtube.tsx",
+      "description": "YouTube — rounded play-button badge.",
       "internalDeps": [
         "lib/icon"
       ],
