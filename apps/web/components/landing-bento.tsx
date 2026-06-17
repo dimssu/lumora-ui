@@ -193,24 +193,26 @@ function CardInteractive() {
   );
 }
 
-/* ── Card 2 visual — isometric framework tiles (neutral) ─────────────── */
+/* ── Card 2 visual — isometric framework tiles (real, recognizable logos) ─ */
 
 interface IsoTile {
   label: string;
   /** Diamond layout offsets, in px, from cluster center. */
   x: number;
   y: number;
+  /** Brand color for the glyph — the one place third-party marks appear. */
+  color: string;
   glyph: React.ReactNode;
 }
 
 function CardFrameworks({ reduceMotion }: { reduceMotion: boolean | null }) {
-  // Loose diamond: top, left, right, center, bottom.
+  // Clean 1-2-2 diamond, no overlap; each tile carries its real brand mark.
   const tiles: IsoTile[] = [
-    { label: "Next", x: 0, y: -58, glyph: <GlyphN /> },
-    { label: "React", x: -82, y: 0, glyph: <GlyphAtom /> },
-    { label: "Motion", x: 82, y: 0, glyph: <GlyphM /> },
-    { label: "TypeScript", x: 0, y: 4, glyph: <GlyphTS /> },
-    { label: "Tailwind", x: 0, y: 62, glyph: <GlyphWave /> },
+    { label: "Next.js", x: 0, y: -74, color: "var(--lm-fg)", glyph: <GlyphNext /> },
+    { label: "React", x: -96, y: -6, color: "#61DAFB", glyph: <GlyphReact /> },
+    { label: "TypeScript", x: 96, y: -6, color: "#4d8fd6", glyph: <GlyphTS /> },
+    { label: "Tailwind", x: -52, y: 70, color: "#38BDF8", glyph: <GlyphTailwind /> },
+    { label: "Motion", x: 52, y: 70, color: "var(--lm-fg)", glyph: <GlyphMotion /> },
   ];
 
   return (
@@ -222,18 +224,16 @@ function CardFrameworks({ reduceMotion }: { reduceMotion: boolean | null }) {
         {tiles.map((tile, i) => (
           <motion.div
             key={tile.label}
-            className="absolute grid h-16 w-16 place-items-center rounded-[var(--lm-radius)] border border-[var(--lm-border-strong)] bg-[var(--lm-surface)] text-[var(--lm-fg-muted)] shadow-[var(--lm-shadow)]"
+            title={tile.label}
+            className="absolute grid h-16 w-16 place-items-center rounded-[var(--lm-radius)] border border-[var(--lm-border-strong)] bg-[var(--lm-surface-2)] shadow-[var(--lm-shadow)] ring-1 ring-inset ring-white/[0.04]"
             style={{
               left: tile.x,
               top: tile.y,
               marginLeft: -32,
               marginTop: -32,
+              color: tile.color,
             }}
-            animate={
-              reduceMotion
-                ? undefined
-                : { translateZ: [0, 14, 0] }
-            }
+            animate={reduceMotion ? undefined : { translateZ: [0, 14, 0] }}
             transition={
               reduceMotion
                 ? undefined
@@ -242,7 +242,7 @@ function CardFrameworks({ reduceMotion }: { reduceMotion: boolean | null }) {
                     repeat: Infinity,
                     repeatType: "loop",
                     ease: "easeInOut",
-                    delay: i * 0.5,
+                    delay: i * 0.45,
                   }
             }
           >
@@ -257,7 +257,7 @@ function CardFrameworks({ reduceMotion }: { reduceMotion: boolean | null }) {
   );
 }
 
-/* ── Card 3 visual — node graph (center node carries the only glow) ──── */
+/* ── Card 3 visual — real source files flowing into your repo ─────────── */
 
 function CardNodeGraph({
   reduceMotion,
@@ -266,115 +266,124 @@ function CardNodeGraph({
   reduceMotion: boolean | null;
   viewport: { once: boolean; amount: number };
 }) {
-  const cx = 160;
-  const cy = 130;
-  // Five surrounding component nodes around the lumen core.
-  const nodes = [
-    { x: 160, y: 36, glyph: "spotlight" as const },
-    { x: 272, y: 92, glyph: "grid" as const },
-    { x: 244, y: 210, glyph: "bars" as const },
-    { x: 76, y: 210, glyph: "dot" as const },
-    { x: 48, y: 92, glyph: "rings" as const },
+  const cx = 180;
+  const cy = 142;
+  // Real Lumora source files the CLI drops into the consumer's repo.
+  const files = [
+    { x: 180, y: 38, name: "button.tsx" },
+    { x: 66, y: 104, name: "tooltip.tsx" },
+    { x: 294, y: 104, name: "slider.tsx" },
+    { x: 104, y: 236, name: "dialog.tsx" },
+    { x: 256, y: 236, name: "dock.tsx" },
   ];
 
   return (
-    <motion.svg
-      viewBox="0 0 320 260"
-      className="h-[260px] w-full"
+    <svg
+      viewBox="0 0 360 280"
+      className="h-[264px] w-full"
       role="img"
-      aria-label="A central node connected by faint lines to five component nodes"
-      initial={reduceMotion ? false : "hidden"}
-      whileInView="show"
-      viewport={viewport}
-      transition={{ staggerChildren: 0.08, delayChildren: 0.1 }}
+      aria-label="Five Lumora source files — button, tooltip, slider, dialog, dock — flowing as code into your repository"
     >
-      {/* connector lines — faint, neutral */}
+      {/* static connector lines — faint, neutral */}
       <g stroke="var(--lm-border-strong)" strokeWidth={1} fill="none">
-        {nodes.map((n, i) => (
-          <line key={i} x1={cx} y1={cy} x2={n.x} y2={n.y} />
+        {files.map((f, i) => (
+          <line key={i} x1={f.x} y1={f.y} x2={cx} y2={cy} />
         ))}
       </g>
 
-      {/* surrounding component nodes */}
-      {nodes.map((n, i) => (
+      {/* flow toward the repo — neutral dashes drifting inward (off when reduced) */}
+      {!reduceMotion && (
+        <g
+          stroke="var(--lm-fg-muted)"
+          strokeWidth={1}
+          fill="none"
+          opacity={0.4}
+          strokeDasharray="2 10"
+          strokeLinecap="round"
+        >
+          {files.map((f, i) => (
+            <motion.line
+              key={i}
+              x1={f.x}
+              y1={f.y}
+              x2={cx}
+              y2={cy}
+              animate={{ strokeDashoffset: [0, -24] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: i * 0.18,
+              }}
+            />
+          ))}
+        </g>
+      )}
+
+      {/* filename nodes */}
+      {files.map((f, i) => (
         <motion.g
           key={i}
-          variants={reveal}
-          transition={springs.drift}
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={viewport}
+          transition={{ ...springs.drift, delay: i * 0.06 }}
+          style={{ transformOrigin: `${f.x}px ${f.y}px` }}
         >
           <rect
-            x={n.x - 22}
-            y={n.y - 18}
-            width={44}
-            height={36}
-            rx={9}
+            x={f.x - 52}
+            y={f.y - 15}
+            width={104}
+            height={30}
+            rx={8}
             fill="var(--lm-surface-2)"
             stroke="var(--lm-border-strong)"
             strokeWidth={1}
           />
-          <NodeGlyph kind={n.glyph} cx={n.x} cy={n.y} />
+          <text
+            x={f.x}
+            y={f.y + 4}
+            textAnchor="middle"
+            fontFamily="var(--font-mono), ui-monospace, monospace"
+            fontSize={11.5}
+            fill="var(--lm-fg-muted)"
+          >
+            {f.name}
+          </text>
         </motion.g>
       ))}
 
-      {/* central lumen node — the only glow in this visual */}
-      <motion.g variants={reveal} transition={springs.drift}>
-        <circle cx={cx} cy={cy} r={30} fill="var(--lm-accent-soft)" />
+      {/* central repo node — a folder carrying the lone, restrained glow */}
+      <g>
+        <circle cx={cx} cy={cy} r={34} fill="var(--lm-accent-soft)" />
         <circle
           cx={cx}
           cy={cy}
-          r={18}
+          r={23}
           fill="var(--lm-surface)"
           stroke="var(--lm-accent)"
           strokeWidth={1.5}
         />
-        <circle cx={cx} cy={cy} r={5} fill="var(--lm-accent)" />
-      </motion.g>
-    </motion.svg>
+        <path
+          d="M171 150 V137 a1 1 0 0 1 1-1 H176 l2 2 H188 a1 1 0 0 1 1 1 V150 a1 1 0 0 1-1 1 H172 a1 1 0 0 1-1-1 Z"
+          fill="none"
+          stroke="var(--lm-accent)"
+          strokeWidth={1.4}
+          strokeLinejoin="round"
+        />
+        <text
+          x={cx}
+          y={cy + 44}
+          textAnchor="middle"
+          fontFamily="var(--font-mono), ui-monospace, monospace"
+          fontSize={11}
+          fill="var(--lm-fg-faint)"
+        >
+          your repo
+        </text>
+      </g>
+    </svg>
   );
-}
-
-function NodeGlyph({
-  kind,
-  cx,
-  cy,
-}: {
-  kind: "spotlight" | "grid" | "bars" | "dot" | "rings";
-  cx: number;
-  cy: number;
-}) {
-  const stroke = "var(--lm-fg-faint)";
-  switch (kind) {
-    case "spotlight":
-      return (
-        <circle cx={cx} cy={cy} r={6} fill="none" stroke={stroke} strokeWidth={1.5} />
-      );
-    case "grid":
-      return (
-        <g fill={stroke}>
-          <rect x={cx - 6} y={cy - 6} width={5} height={5} rx={1} />
-          <rect x={cx + 1} y={cy - 6} width={5} height={5} rx={1} />
-          <rect x={cx - 6} y={cy + 1} width={5} height={5} rx={1} />
-          <rect x={cx + 1} y={cy + 1} width={5} height={5} rx={1} />
-        </g>
-      );
-    case "bars":
-      return (
-        <g fill={stroke}>
-          <rect x={cx - 7} y={cy - 1} width={3} height={6} rx={1} />
-          <rect x={cx - 1.5} y={cy - 5} width={3} height={10} rx={1} />
-          <rect x={cx + 4} y={cy - 3} width={3} height={8} rx={1} />
-        </g>
-      );
-    case "dot":
-      return <circle cx={cx} cy={cy} r={4} fill={stroke} />;
-    case "rings":
-      return (
-        <g fill="none" stroke={stroke} strokeWidth={1.5}>
-          <circle cx={cx} cy={cy} r={3} />
-          <circle cx={cx} cy={cy} r={7} />
-        </g>
-      );
-  }
 }
 
 /* ── Card 4 visual — skeleton wireframe in a browser frame (neutral) ──── */
@@ -428,55 +437,69 @@ function CardWireframe() {
   );
 }
 
-/* ── Monochrome framework glyphs ─────────────────────────────────────── */
+/* ── Real, recognizable framework marks (brand color via currentColor) ─── */
 
-function GlyphAtom() {
+function GlyphReact() {
   return (
-    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <circle cx={12} cy={12} r={2.2} fill="currentColor" />
-      <g stroke="currentColor" strokeWidth={1.4} fill="none">
-        <ellipse cx={12} cy={12} rx={10} ry={4} />
-        <ellipse cx={12} cy={12} rx={10} ry={4} transform="rotate(60 12 12)" />
-        <ellipse cx={12} cy={12} rx={10} ry={4} transform="rotate(120 12 12)" />
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx={12} cy={12} r={2} fill="currentColor" />
+      <g stroke="currentColor" strokeWidth={1.3} fill="none">
+        <ellipse cx={12} cy={12} rx={10} ry={3.9} />
+        <ellipse cx={12} cy={12} rx={10} ry={3.9} transform="rotate(60 12 12)" />
+        <ellipse cx={12} cy={12} rx={10} ry={3.9} transform="rotate(120 12 12)" />
       </g>
     </svg>
   );
 }
 
-function GlyphN() {
+/** Next.js: the circle mark with the diagonal "N". */
+function GlyphNext() {
   return (
-    <span className="font-display text-lg font-semibold leading-none text-current">
-      N
-    </span>
+    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx={12} cy={12} r={10.5} stroke="currentColor" strokeWidth={1.1} opacity={0.45} />
+      <path
+        d="M8.4 8v8M8.4 8l8 9.2"
+        stroke="currentColor"
+        strokeWidth={1.7}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M15.6 8v5.4" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" />
+    </svg>
   );
 }
 
 function GlyphTS() {
   return (
-    <span className="font-mono text-[13px] font-semibold leading-none tracking-tight text-current">
+    <span className="font-mono text-[13px] font-bold leading-none tracking-tight text-current">
       TS
     </span>
   );
 }
 
-function GlyphWave() {
+/** Tailwind: the twin overlapping waves. */
+function GlyphTailwind() {
   return (
-    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M3 14c2-4 4-4 6 0s4 4 6 0 4-4 6 0"
-        stroke="currentColor"
-        strokeWidth={1.6}
-        strokeLinecap="round"
-        fill="none"
-      />
+    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <g stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" fill="none">
+        <path d="M4 11c1.3-2.7 2.9-4 4.9-4 3 0 3.3 3 5.6 3 1.5 0 2.5-.8 3.4-2.4-1.3 2.7-2.9 4-4.9 4-3 0-3.3-3-5.6-3-1.5 0-2.5.8-3.4 2.4Z" />
+        <path d="M4 16c1.3-2.7 2.9-4 4.9-4 3 0 3.3 3 5.6 3 1.5 0 2.5-.8 3.4-2.4-1.3 2.7-2.9 4-4.9 4-3 0-3.3-3-5.6-3-1.5 0-2.5.8-3.4 2.4Z" />
+      </g>
     </svg>
   );
 }
 
-function GlyphM() {
+/** Motion: an ease curve arcing up to a leading dot. */
+function GlyphMotion() {
   return (
-    <span className="font-display text-lg font-semibold leading-none text-current">
-      M
-    </span>
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M3.5 17.5C7 17.5 9 6.5 13.5 6.5c1.8 0 2.8 1.4 4 1.4"
+        stroke="currentColor"
+        strokeWidth={1.7}
+        strokeLinecap="round"
+      />
+      <circle cx={18.5} cy={8} r={2.1} fill="currentColor" />
+    </svg>
   );
 }

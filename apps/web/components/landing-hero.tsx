@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { Button, Switch, springs } from "@lumora/ui";
+import {
+  Button,
+  SegmentedControl,
+  Slider,
+  Switch,
+  springs,
+} from "@lumora/ui";
 
 export interface LandingHeroProps {
   /** Primary CTA — open the component gallery. */
@@ -12,15 +18,14 @@ export interface LandingHeroProps {
 }
 
 /**
- * Split hero: editorial headline on the left, an isometric wireframe "lumen
- * cube" centerpiece on the right. The cube floats on a slow yoyo loop, live
- * Lumora chips parallax over its faces, and the cube's leading edges carry the
- * single lumen glow. Ambient motion stops under reduced-motion; the geometry
- * stays crisp.
+ * Split hero: editorial headline on the left, an interactive "lumen console"
+ * on the right. The console is built from real Lumora components — a segmented
+ * spring picker, a lumen slider, and a glow switch — that drive a live puck so
+ * a first-time visitor literally feels the motion language. Reduced motion
+ * keeps every control working; only the fling becomes an instant cut.
  */
 export function LandingHero({ onBrowse, onDocs }: LandingHeroProps) {
   const reduceMotion = useReducedMotion();
-  const [glowing, setGlowing] = React.useState(true);
 
   return (
     <section className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
@@ -28,10 +33,7 @@ export function LandingHero({ onBrowse, onDocs }: LandingHeroProps) {
         {/* ── LEFT: text ───────────────────────────────────────────── */}
         <div className="flex flex-col items-start">
           <span className="inline-flex items-center gap-2 rounded-[var(--lm-radius-full)] border border-[var(--lm-border)] bg-[var(--lm-surface)] py-1.5 pl-2.5 pr-3.5 text-xs font-medium text-[var(--lm-fg-muted)]">
-            <span
-              aria-hidden
-              className="relative flex h-1.5 w-1.5"
-            >
+            <span aria-hidden className="relative flex h-1.5 w-1.5">
               {!reduceMotion && (
                 <motion.span
                   className="absolute inset-0 rounded-[var(--lm-radius-full)] bg-[var(--lm-accent)]"
@@ -71,19 +73,10 @@ export function LandingHero({ onBrowse, onDocs }: LandingHeroProps) {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Button
-              variant="solid"
-              size="lg"
-              onClick={onBrowse}
-              shimmer
-            >
+            <Button variant="solid" size="lg" onClick={onBrowse} shimmer>
               Explore components
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={onDocs}
-            >
+            <Button variant="outline" size="lg" onClick={onDocs}>
               Read the docs
             </Button>
             <a
@@ -98,341 +91,219 @@ export function LandingHero({ onBrowse, onDocs }: LandingHeroProps) {
           </div>
         </div>
 
-        {/* ── RIGHT: the isometric lumen cube ──────────────────────── */}
-        <LumenCubeStage
-          reduceMotion={!!reduceMotion}
-          glowing={glowing}
-          onToggleGlow={setGlowing}
-        />
+        {/* ── RIGHT: the interactive lumen console ──────────────────── */}
+        <LumenConsole reduceMotion={!!reduceMotion} />
       </div>
     </section>
   );
 }
 
 /* ───────────────────────────────────────────────────────────────────
-   The signature visual.
+   The signature visual: a live console you actually operate.
    ─────────────────────────────────────────────────────────────────── */
 
-interface StageProps {
-  reduceMotion: boolean;
-  glowing: boolean;
-  onToggleGlow: (next: boolean) => void;
-}
+type SpringName = "snap" | "drift" | "glide";
 
-function LumenCubeStage({ reduceMotion, glowing, onToggleGlow }: StageProps) {
-  // Gentle ambient float for the whole cube assembly.
-  const float = reduceMotion
-    ? {}
-    : {
-        animate: { y: [0, -10, 0] },
-        transition: {
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut" as const,
-        },
-      };
+const SPRING_ITEMS = [
+  { value: "snap", label: "snap" },
+  { value: "drift", label: "drift" },
+  { value: "glide", label: "glide" },
+];
+
+const SPRING_BLURB: Record<SpringName, string> = {
+  snap: "fast settle, no overshoot",
+  drift: "one soft breath in",
+  glide: "long, weighty travel",
+};
+
+function LumenConsole({ reduceMotion }: { reduceMotion: boolean }) {
+  const [active, setActive] = React.useState<SpringName>("drift");
+  const [lumen, setLumen] = React.useState(72);
+  const [glow, setGlow] = React.useState(true);
+  const [stop, setStop] = React.useState(0);
+
+  const trackRef = React.useRef<HTMLDivElement>(null);
+  const [trackW, setTrackW] = React.useState(0);
+
+  React.useEffect(() => {
+    const node = trackRef.current;
+    if (!node) return;
+    const measure = () => setTrackW(node.clientWidth);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // The puck flings between the two rail ends so the spring is legible.
+  const puckW = 132;
+  const pad = 14;
+  const targets =
+    trackW > puckW + pad * 2
+      ? [pad, trackW - puckW - pad]
+      : [pad, pad];
+  const x = targets[stop] ?? pad;
+
+  const fling = React.useCallback(() => setStop((s) => (s === 0 ? 1 : 0)), []);
+  const pickSpring = React.useCallback((v: string) => {
+    setActive(v as SpringName);
+    setStop((s) => (s === 0 ? 1 : 0));
+  }, []);
+
+  // Glow intensity 0..1 from the slider, gated by the switch.
+  const g = glow ? lumen / 100 : 0;
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[440px] select-none lg:max-w-[480px]">
-      {/* Technical bounding bracket — corner framing lines */}
+    <div className="relative mx-auto w-full max-w-[480px] select-none">
       <CornerFrame />
 
-      {/* The cube + platform, drawn as one crisp isometric SVG. */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center"
-        style={{ color: "var(--lm-border-strong)" }}
-        {...float}
-      >
-        <IsoCube glowing={glowing} reduceMotion={reduceMotion} />
-      </motion.div>
+      <div className="rounded-[var(--lm-radius-lg)] border border-[var(--lm-border)] bg-[var(--lm-surface)] p-5 shadow-[var(--lm-shadow)] sm:p-6">
+        {/* header */}
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--lm-fg-faint)]">
+            Lumen console
+          </span>
+          <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[var(--lm-fg-muted)]">
+            <span
+              aria-hidden
+              className="h-1.5 w-1.5 rounded-[var(--lm-radius-full)]"
+              style={{
+                background: "var(--lm-positive)",
+                boxShadow: "0 0 8px var(--lm-positive)",
+              }}
+            />
+            live
+          </span>
+        </div>
 
-      {/* Floating live component chips, parallaxing over the cube faces. */}
-      <FloatingChip
-        reduceMotion={reduceMotion}
-        delay={0}
-        drift={-7}
-        className="left-[6%] top-[18%]"
-      >
-        <Button variant="glow" size="sm">
-          <span
+        {/* ── stage: the puck flings across the rail ─────────────── */}
+        <div
+          ref={trackRef}
+          className="relative mt-4 h-[168px] w-full overflow-hidden rounded-[var(--lm-radius)] border border-[var(--lm-border)] bg-[var(--lm-bg)]"
+        >
+          {/* faint grid texture */}
+          <div
             aria-hidden
-            className="h-1.5 w-1.5 rounded-[var(--lm-radius-full)] bg-[var(--lm-accent)]"
+            className="absolute inset-0 opacity-[0.5]"
+            style={{
+              backgroundImage:
+                "linear-gradient(var(--lm-border) 1px, transparent 1px), linear-gradient(90deg, var(--lm-border) 1px, transparent 1px)",
+              backgroundSize: "26px 26px",
+              maskImage:
+                "radial-gradient(120% 120% at 50% 50%, black 40%, transparent 100%)",
+            }}
           />
-          Glow
-        </Button>
-      </FloatingChip>
-
-      <FloatingChip
-        reduceMotion={reduceMotion}
-        delay={0.8}
-        drift={6}
-        className="right-[2%] top-[34%]"
-      >
-        <span className="inline-flex items-center gap-2 rounded-[var(--lm-radius-sm)] border border-[var(--lm-border)] bg-[var(--lm-surface-2)] px-2.5 py-1.5 text-xs font-medium text-[var(--lm-fg)] shadow-[var(--lm-shadow)]">
-          <span
+          {/* dashed baseline + the two rail stops */}
+          <div
             aria-hidden
-            className="font-mono text-[10px] text-[var(--lm-accent)]"
+            className="absolute left-4 right-4 top-1/2 -translate-y-1/2 border-t border-dashed border-[var(--lm-border-strong)]"
+          />
+          {[0, 1].map((i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-[var(--lm-radius-full)] border border-[var(--lm-border-strong)]"
+              style={{ left: (targets[i] ?? pad) + puckW / 2 - 4 }}
+            />
+          ))}
+
+          {/* the lumen pool, riding under the puck */}
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute top-1/2 h-[120px] w-[160px] -translate-y-1/2 rounded-full"
+            style={{
+              left: x - 14,
+              backgroundImage:
+                "radial-gradient(circle, var(--lm-glow) 0%, transparent 70%)",
+              opacity: g * 0.9,
+            }}
+            animate={{ left: x - 14 }}
+            transition={reduceMotion ? { duration: 0 } : springs[active]}
+          />
+
+          {/* the puck — a faux component card carrying the live glow */}
+          <motion.button
+            type="button"
+            onClick={fling}
+            aria-label={`Fling the puck with the ${active} spring`}
+            className="absolute top-1/2 -translate-y-1/2 rounded-[var(--lm-radius)] border bg-[var(--lm-surface-2)] px-4 py-3 text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--lm-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--lm-bg)]"
+            style={{
+              width: puckW,
+              borderColor:
+                g > 0
+                  ? "color-mix(in oklab, var(--lm-accent) 55%, var(--lm-border))"
+                  : "var(--lm-border-strong)",
+              boxShadow:
+                g > 0
+                  ? `0 0 ${14 + 46 * g}px color-mix(in oklab, var(--lm-glow) ${Math.round(
+                      55 + 45 * g,
+                    )}%, transparent)`
+                  : "var(--lm-shadow-sm)",
+            }}
+            animate={{ left: x }}
+            transition={reduceMotion ? { duration: 0 } : springs[active]}
           >
-            ⌘K
-          </span>
-          springs.drift
-        </span>
-      </FloatingChip>
+            <span className="block font-mono text-[10px] text-[var(--lm-fg-muted)]">
+              springs.{active}
+            </span>
+            <span
+              className="mt-2 block h-1.5 w-full rounded-[var(--lm-radius-full)]"
+              style={{
+                backgroundImage:
+                  g > 0
+                    ? `linear-gradient(90deg, var(--lm-accent), color-mix(in oklab, var(--lm-accent) ${Math.round(
+                        20 + 60 * g,
+                      )}%, var(--lm-fg-faint)))`
+                    : "linear-gradient(var(--lm-fg-faint), var(--lm-fg-faint))",
+              }}
+            />
+          </motion.button>
+        </div>
 
-      <FloatingChip
-        reduceMotion={reduceMotion}
-        delay={1.4}
-        drift={-5}
-        className="bottom-[16%] left-[14%]"
-      >
-        <span className="inline-flex items-center gap-2.5 rounded-[var(--lm-radius-full)] border border-[var(--lm-border)] bg-[var(--lm-surface)] py-1.5 pl-3 pr-1.5 shadow-[var(--lm-shadow)]">
-          <span className="text-xs font-medium text-[var(--lm-fg-muted)]">
-            Lumen
-          </span>
-          <Switch
-            checked={glowing}
-            onCheckedChange={onToggleGlow}
-            aria-label="Toggle the cube's lumen edges"
+        {/* one-line blurb on the active spring */}
+        <p className="mt-3 font-mono text-[11px] text-[var(--lm-fg-faint)]">
+          {`// ${active} — ${SPRING_BLURB[active]}`}
+        </p>
+
+        {/* ── controls: real components ──────────────────────────── */}
+        <div className="mt-4 flex flex-col gap-4">
+          <SegmentedControl
+            items={SPRING_ITEMS}
+            value={active}
+            onValueChange={pickSpring}
+            size="sm"
+            aria-label="Pick a spring, then watch the puck fling with it"
+            className="w-full justify-between"
           />
-        </span>
-      </FloatingChip>
+
+          <div className="flex items-center gap-4">
+            <div className="flex flex-1 items-center gap-3">
+              <span className="font-mono text-[11px] text-[var(--lm-fg-muted)]">
+                Lumen
+              </span>
+              <Slider
+                value={lumen}
+                onValueChange={setLumen}
+                bubble
+                formatValue={(v) => `${v}%`}
+                aria-label="Lumen intensity"
+                className="flex-1"
+              />
+            </div>
+            <span className="inline-flex items-center gap-2">
+              <span className="font-mono text-[11px] text-[var(--lm-fg-muted)]">
+                Glow
+              </span>
+              <Switch
+                checked={glow}
+                onCheckedChange={setGlow}
+                aria-label="Toggle the lumen glow"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-  );
-}
-
-interface ChipProps {
-  reduceMotion: boolean;
-  delay: number;
-  drift: number;
-  className: string;
-  children: React.ReactNode;
-}
-
-function FloatingChip({
-  reduceMotion,
-  delay,
-  drift,
-  className,
-  children,
-}: ChipProps) {
-  return (
-    <motion.div
-      className={`absolute z-10 ${className}`}
-      initial={
-        reduceMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.96 }
-      }
-      animate={
-        reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }
-      }
-      transition={{ ...springs.drift, delay: delay * 0.4 }}
-    >
-      {reduceMotion ? (
-        children
-      ) : (
-        <motion.div
-          animate={{ y: [0, drift, 0] }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay,
-          }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </motion.div>
-  );
-}
-
-/**
- * True isometric cube floating above a dashed platform on a faint grid floor.
- * Built with the standard 2:1 iso projection (every receding edge runs at a
- * 1:2 slope). Thin 1px strokes in currentColor; the cube's three leading
- * (top) edges get the lumen glow via an SVG drop-shadow filter.
- */
-function IsoCube({
-  glowing,
-  reduceMotion,
-}: {
-  glowing: boolean;
-  reduceMotion: boolean;
-}) {
-  // Iso geometry. Center the cube around (160, 150).
-  // Half-width on screen = w; vertical iso step = w/2. Cube edge "size".
-  const cx = 160;
-  const cy = 150;
-  const w = 66; // horizontal half-span of a face
-  const h = w / 2; // iso vertical step (2:1)
-  const e = 84; // cube vertical edge length
-
-  // Top diamond (cube top face) vertices.
-  const top = { x: cx, y: cy - e / 2 - h }; // back-top apex
-  const right = { x: cx + w, y: cy - e / 2 }; // right corner
-  const front = { x: cx, y: cy - e / 2 + h }; // front apex
-  const left = { x: cx - w, y: cy - e / 2 }; // left corner
-
-  // Bottom vertices = top vertices shifted down by e (the vertical edges).
-  const fb = { x: front.x, y: front.y + e }; // front-bottom
-  const rb = { x: right.x, y: right.y + e }; // right-bottom
-  const lb = { x: left.x, y: left.y + e }; // left-bottom
-
-  // Grid floor lines (faint iso grid).
-  const floorY = cy + e / 2 + 26;
-  const gridLines: React.ReactElement[] = [];
-  for (let i = -3; i <= 3; i++) {
-    const off = i * 22;
-    // two diagonal families forming the iso floor
-    gridLines.push(
-      <line
-        key={`a${i}`}
-        x1={cx - 132 + off}
-        y1={floorY}
-        x2={cx + off}
-        y2={floorY + 66}
-        stroke="var(--lm-border)"
-        strokeWidth={1}
-      />,
-      <line
-        key={`b${i}`}
-        x1={cx + 132 + off}
-        y1={floorY}
-        x2={cx + off}
-        y2={floorY + 66}
-        stroke="var(--lm-border)"
-        strokeWidth={1}
-      />,
-    );
-  }
-
-  // Dashed platform diamond, sitting below the cube.
-  const pCx = cx;
-  const pCy = cy + e / 2 + 22;
-  const pw = 104;
-  const ph = pw / 2;
-  const platform = `${pCx},${pCy - ph} ${pCx + pw},${pCy} ${pCx},${pCy + ph} ${pCx - pw},${pCy}`;
-
-  return (
-    <svg
-      viewBox="0 0 320 340"
-      className="h-full w-full overflow-visible"
-      role="img"
-      aria-label="An isometric wireframe cube floating above a dashed platform, lit on its leading edges"
-    >
-      <defs>
-        <filter
-          id="lumen-edge-glow"
-          x="-60%"
-          y="-60%"
-          width="220%"
-          height="220%"
-        >
-          <feDropShadow
-            dx="0"
-            dy="0"
-            stdDeviation="4"
-            floodColor="var(--lm-accent)"
-            floodOpacity="0.9"
-          />
-        </filter>
-        <radialGradient id="lumen-pool" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="var(--lm-glow)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-      </defs>
-
-      {/* faint iso grid floor (clipped to a soft fade via opacity) */}
-      <g opacity={0.5}>{gridLines}</g>
-
-      {/* dashed-outline platform */}
-      <polygon
-        points={platform}
-        fill="var(--lm-surface)"
-        fillOpacity={0.4}
-        stroke="var(--lm-border-strong)"
-        strokeWidth={1}
-        strokeDasharray="5 5"
-      />
-
-      {/* soft lumen pool cast on the platform when glowing */}
-      {glowing && (
-        <ellipse
-          cx={pCx}
-          cy={pCy}
-          rx={70}
-          ry={34}
-          fill="url(#lumen-pool)"
-          opacity={0.7}
-        />
-      )}
-
-      {/* ── cube body: three visible faces, filled faintly ───────── */}
-      <g>
-        {/* left face */}
-        <polygon
-          points={`${left.x},${left.y} ${front.x},${front.y} ${fb.x},${fb.y} ${lb.x},${lb.y}`}
-          fill="var(--lm-surface)"
-          fillOpacity={0.55}
-          stroke="var(--lm-border)"
-          strokeWidth={1}
-        />
-        {/* right face */}
-        <polygon
-          points={`${front.x},${front.y} ${right.x},${right.y} ${rb.x},${rb.y} ${fb.x},${fb.y}`}
-          fill="var(--lm-surface-2)"
-          fillOpacity={0.7}
-          stroke="var(--lm-border)"
-          strokeWidth={1}
-        />
-        {/* top face */}
-        <polygon
-          points={`${top.x},${top.y} ${right.x},${right.y} ${front.x},${front.y} ${left.x},${left.y}`}
-          fill="var(--lm-surface-2)"
-          fillOpacity={0.9}
-          stroke="var(--lm-border-strong)"
-          strokeWidth={1}
-        />
-      </g>
-
-      {/* hidden back edges, very faint, for wireframe depth */}
-      <g stroke="var(--lm-border)" strokeWidth={1} opacity={0.45}>
-        <line x1={top.x} y1={top.y} x2={top.x} y2={top.y + e} />
-        <line x1={top.x} y1={top.y} x2={left.x} y2={left.y} />
-        <line x1={top.x} y1={top.y} x2={right.x} y2={right.y} />
-      </g>
-
-      {/* ── the lumen: the three leading top edges glow ──────────── */}
-      <g
-        stroke="var(--lm-accent)"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        fill="none"
-        filter={glowing ? "url(#lumen-edge-glow)" : undefined}
-        opacity={glowing ? 1 : 0.35}
-        style={{
-          transition: reduceMotion
-            ? undefined
-            : "opacity var(--lm-duration) var(--lm-ease-out)",
-        }}
-      >
-        {/* the front vertical leading edge + the two top edges meeting at front */}
-        <polyline
-          points={`${left.x},${left.y} ${front.x},${front.y} ${right.x},${right.y}`}
-        />
-        <line x1={front.x} y1={front.y} x2={fb.x} y2={fb.y} />
-      </g>
-
-      {/* bright vertex node where leading edges meet */}
-      {glowing && (
-        <circle
-          cx={front.x}
-          cy={front.y}
-          r={2.6}
-          fill="var(--lm-accent)"
-          filter="url(#lumen-edge-glow)"
-        />
-      )}
-    </svg>
   );
 }
 
@@ -441,7 +312,7 @@ function CornerFrame() {
   const corner =
     "pointer-events-none absolute h-6 w-6 border-[var(--lm-border-strong)]";
   return (
-    <div aria-hidden className="absolute inset-0">
+    <div aria-hidden className="absolute -inset-3 sm:-inset-4">
       <span className={`${corner} left-0 top-0 border-l border-t`} />
       <span className={`${corner} right-0 top-0 border-r border-t`} />
       <span className={`${corner} bottom-0 left-0 border-b border-l`} />
